@@ -670,6 +670,10 @@ body {
   color: ${({ theme }) => theme.text1} !important;
 }
 
+.advanced-batchswap-details-container{
+  max-width: 350px;
+}
+
 /*  --------------------------------------------------------
 ALPHA OPACITY
 -------------------------------------------------------- */
