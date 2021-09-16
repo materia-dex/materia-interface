@@ -15,7 +15,7 @@ import { Field, replaceSwapState, selectCurrency, setRecipient, switchCurrencies
 import { SwapState } from './reducer'
 import { useUserSlippageTolerance } from '../user/hooks'
 import { computeSlippageAdjustedAmounts } from '../../utils/prices'
-import { ERC20WRAPPER, FACTORY_ADDRESS, MATERIA_DFO_ADDRESS, ORCHESTRATOR_ADDRESS, WUSD } from '../../constants'
+import { ERC20WRAPPER, FACTORY_ADDRESS, GIL, MATERIA_DFO_ADDRESS, ORCHESTRATOR_ADDRESS, WUSD } from '../../constants'
 import useGetEthItemInteroperable from '../../hooks/useGetEthItemInteroperable'
 import { formatUnits } from 'ethers/lib/utils'
 
@@ -383,8 +383,15 @@ function validatedRecipient(recipient: any): string | null {
 }
 
 export function queryParametersToSwapState(parsedQs: ParsedQs, chainId: ChainId | undefined): SwapState {
+  let parsedOutputCurrency = parsedQs.outputCurrency
+
+  if (chainId) {
+    parsedOutputCurrency = !parsedQs.outputCurrency ? GIL[chainId].address : parsedQs.outputCurrency
+  }
+
   let inputCurrency = parseCurrencyFromURLParameter(parsedQs.inputCurrency, chainId)
-  let outputCurrency = parseCurrencyFromURLParameter(parsedQs.outputCurrency, chainId)
+  let outputCurrency = parseCurrencyFromURLParameter(parsedOutputCurrency, chainId)
+
   if (inputCurrency === outputCurrency) {
     if (typeof parsedQs.outputCurrency === 'string') {
       inputCurrency = ''
