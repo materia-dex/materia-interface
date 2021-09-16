@@ -507,13 +507,16 @@ export default function Swap() {
                 <BottomGrouping>
                   <SwapButtonsContainer className={isExpertMode && swapErrorMessage ? 'has-error' : ''}>
                     {!account ? (
-                      <OperationButton
+                      <ButtonMateriaConfirmed
                         onClick={toggleWalletModal}
                         className={`connect-wallet-button ${theme.name}`}
                         label="Connect Wallet"
                       >
-                        <Link />
-                      </OperationButton>
+                        <AutoRow gap="6px" justify="center">
+                        Connect Wallet <Link />
+                            </AutoRow>
+                        
+                      </ButtonMateriaConfirmed>
                     ) : showWrap ? (
                       <RowCenter>
                         <ButtonMateriaConfirmed

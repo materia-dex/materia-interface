@@ -91,32 +91,27 @@ export const ButtonLight = styled(Base)`
 export const ButtonMateriaLight = styled(ButtonLight)`
   width: auto;
   color: ${({ theme }) => theme.text1};
-  background-color: ${({ theme }) => theme.bg8};
-  border: 2px solid ${({ theme }) => theme.cyan1};
+  background-color: transparent;
+  border: 2px solid rgba(4, 4, 5, 0.1);
   padding: 5px 10px;
   border-radius: 35px;
   padding: 5px 15px;
   border-radius: 15px;
   &:focus {
     box-shadow: none;
-    background-color: ${({ theme }) => theme.bg8};
-    border: 2px solid ${({ theme }) => theme.cyan1};
+    border: 2px solid rgba(4, 4, 5, 0.2);
   }
   &:hover {
-    background-color: ${({ theme }) => theme.bg8};
-    border: 2px solid ${({ theme }) => theme.cyan1};
+    border: 2px solid rgba(4, 4, 5, 0.2);
   }
   &:active {
     box-shadow: none;
-    background-color: r${({ theme }) => theme.bg8};
-    border: 2px solid ${({ theme }) => theme.cyan1};
+    border: 2px solid rgba(67, 142, 255, 0.4);
   }
   :disabled {
     opacity: 0.4;
     :hover {
       cursor: auto;
-      background-color: ${({ theme }) => theme.bg8};
-      border: 2px solid ${({ theme }) => theme.cyan1};
       box-shadow: none;
       outline: none;
     }

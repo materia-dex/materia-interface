@@ -2445,35 +2445,34 @@ export const EthItemBadge = styled(ActionButton) <{
   }
 `
 const InfoCard = styled.button<{ active?: boolean }>`
-  border-radius: 0.65rem !important;
+  border-radius: 16px !important;
+  
   font-size: 12px !important;
-  font-weight: 500;
-  text-transform: capitalize;
+  font-weight: 900;
   text-align: center;
-  letter-spacing: 0.1em;
   padding: 10px 10px !important;
 
   &.dark {
-    color: ${({ theme }) => theme.azure1} !important;
-    border: 1px solid ${({ theme }) => theme.azure1} !important;
-    background-color: ${({ theme }) => theme.blue3};
+    color: ${({ theme }) => theme.white} !important;
+    background-color: #1a1a1a;
+    border: 2px solid rgba(255, 255, 255, 0.1);
   }
 
   &.light {
-    color: ${({ theme }) => theme.violet1} !important;
-    border: 1px solid ${({ theme }) => theme.violet1} !important;
-    background-color: ${({ theme }) => theme.violet3};
+    color: ${({ theme }) => theme.black} !important;
+    background-color: #f5f5fe;
+    border: 2px solid rgba(4, 4, 5, 0.1);
   }
   &.classic {
   }
 
   &.dark:hover,
   &.dark:focus {
-    box-shadow: 0px 0px 4px ${({ theme }) => theme.azure1};
+    border: 2px solid rgba(255, 255, 255, 0.2);
   }
   &.light:hover,
   &.light:focus {
-    box-shadow: 0px 0px 4px ${({ theme }) => theme.utils.hexToRGB(theme.grey3, 0.5)};
+    border: 2px solid rgba(4, 4, 5, 0.2);
   }
   &.classic:hover,
   &.classic:focus {
