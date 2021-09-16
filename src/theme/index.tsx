@@ -1511,7 +1511,7 @@ const BaseButton = styled(Button) <{ width?: string; borderRadius?: string; sele
 export const IconButton = styled(BaseButton) <{ width?: string; borderRadius?: string; selected?: boolean }>`
   cursor: pointer;
   width: fit-content;
-  margin-left: 10px !important;
+  margin-left: 10px;
   border-color: rgba(4, 4, 5, 0.1);
     color: rgba(4, 4, 5, 0.8);
     background: transparent;
@@ -2889,106 +2889,7 @@ export const OperationButton = styled(Button) <{ label?: string; disabled?: bool
   &.wrap-button { margin-left: -190px; }
 `
 
-export const SmallOperationButton = styled(Button) <{ disabled?: boolean }>`
-  padding: 0px !important;
-  border-radius: 4px !important;
-  display: inline-block;
-  text-align: center;
-  border-color: transparent;
-  outline: none;
-  text-decoration: none;
-  display: flex;
-  justify-content: center;
-  flex-wrap: nowrap;
-  align-items: center;
-  position: relative;
-  background: none;
-  transform: rotate(45deg);
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
-
-  &:disabled, &.disabled, &.dark.disabled, &.light.disabled, &.classic.disabled,
-  &.dark.disabled:hover, &.dark.disabled:focus,
-  &.light.disabled:hover, &.light.disabled:focus,
-  &.classic.disabled:hover, &.classic.disabled:focus { cursor: auto; opacity: 0.4; box-shadow: none; }
-  > * { user-select: none; }
-  &.hidden { display: none !important; }
-
-  & > svg { width: 15px; height: 15px; transform: rotate(-45deg); margin-left: 0px; margin-bottom: -3px; }
-  
-  &:after, &:before {
-    content: "";
-    display:block;
-    position:absolute;
-    width: 216px;
-    height: 1px;
-    transform: rotate(-45deg);    
-  }
-
-  &.classic, &.classic:after, &.classic:before, &.classic > svg { transform: none; }
-  &.classic > svg { 
-    display: inherit;
-    stroke-width: 0.2rem;
-    color: ${({ theme }) => theme.yellowGreen}
-  }
-
-  &.classic:hover > svg { 
-    color: ${({ theme }) => theme.azure2}
-  }
-
-  &:before { bottom: 104px; right: -184px;  }
-
-  &.dark { border: solid 1px ${({ theme }) => theme.azure1}; background-color: ${({ theme }) => theme.black}; }
-  &.light { border: solid 1px ${({ theme }) => theme.violet1}; background-color: ${({ theme }) => theme.violet4}; }
-  &.classic {}
-
-  &.dark:hover, &.dark:focus { box-shadow: 0px 0px 12px ${({ theme }) => theme.azure1}; }
-  &.dark:hover::after { text-shadow: 0px 0px 12px ${({ theme }) => theme.azure1}; }
-  &.light:hover, &.light:focus { box-shadow: 0px 0px 12px ${({ theme }) => theme.violet1}; }
-  &.light:hover::after { text-shadow: 0px 0px 12px ${({ theme }) => theme.violet1}; }
-  &.classic:hover, &.classic:focus { }
-  &.classic:hover::after { }
-
-  &.dark:after {
-    font-weight: 500;
-    font-size:14px;
-    color: ${({ theme }) => theme.azure1};
-    width: auto;
-  }
-
-  &.light:after {
-    font-weight: 500;
-    font-size:14px;
-    color: ${({ theme }) => theme.violet1};
-    width: auto;
-  }  
-
-  &.classic:after {
-    top: 0px;
-    left: 0px;
-    padding: 0px;
-    width: 200px;
-    height: auto;
-    color: ${({ theme }) => theme.yellowGreen}
-    text-shadow: 1px 1px 1px ${({ theme }) => theme.black};
-  }
-  &.classic:before {
-    position: absolute;
-    content: " ";
-    display: none; 
-    width: 57px;
-    height: 35px;
-    background-image: url(${images.icons.FF7Cursor});
-    background-repeat: no-repeat;
-    background-position: center center;
-    left: -65px;
-    top: -3px;
-    z-index: 1;
-  }
-  &.classic:hover:after { color: ${({ theme }) => theme.azure2}; }
-  &.classic:hover:before, &.classic:focus:before { display: block; }
-
+export const SmallOperationButton = styled(SwitchButton) <{ disabled?: boolean }>`
   &.add-a-send-button { /*position: absolute; top: 330px; left: 70px;*/ }  
   &.connect-wallet-button { margin-left: -170px; }
   &.wrap-button { margin-left: -190px; }
@@ -3097,7 +2998,7 @@ export const MainOperationButton = styled(ActionButton) <{
   }
 
   &.dark.customPercentage {
-    font-size: 0.7rem !important;
+    font-size: 1rem !important;
     padding: 0.4rem !important;
     margin-top: 1rem;
     width: auto !important;
@@ -3107,7 +3008,7 @@ export const MainOperationButton = styled(ActionButton) <{
     background: transparent;
   }
   &.light.customPercentage {
-    font-size: 0.7rem !important;
+    font-size: 1rem !important;
     padding: 0.4rem !important;
     margin-top: 1rem;
     width: auto !important;
