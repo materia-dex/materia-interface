@@ -534,13 +534,16 @@ export default function BatchSwap() {
                 <BatchSwapBottomGrouping>
                   <BatchSwapButtonsContainer className={isExpertMode && batchSwapErrorMessage ? 'has-error' : ''}>
                     {!account ? (
-                      <OperationButton
+                      <ButtonMateriaConfirmed
                         onClick={toggleWalletModal}
                         className={`connect-wallet-button ${theme.name}`}
                         label="Connect Wallet"
                       >
-                        <Link />
-                      </OperationButton>
+                        <AutoRow gap="6px" justify="center">
+                          Connect Wallet <Link />
+                        </AutoRow>
+
+                      </ButtonMateriaConfirmed>
                     ) : showApproveFlow && signatureData === null ? (
                       <RowCenter>
                         <ButtonMateriaConfirmed

@@ -15,7 +15,7 @@ import CurrencyInputPanel from '../../components/CurrencyInputPanel'
 import DoubleCurrencyLogo from '../../components/DoubleLogo'
 import { AddRemoveTabs } from '../../components/NavigationTabs'
 import { MinimalPositionCard } from '../../components/PositionCard'
-import { RowBetween, RowFixed } from '../../components/Row'
+import { AutoRow, RowBetween, RowFixed } from '../../components/Row'
 
 import Slider from '../../components/Slider'
 import CurrencyLogo from '../../components/CurrencyLogo'
@@ -674,9 +674,16 @@ export default function RemoveLiquidity({
                   )}
                   <div style={{ position: 'relative' }}>
                     {!account ? (
-                      <OperationButton onClick={toggleWalletModal} className={`connect-wallet-button ${theme.name}`} label="Connect Wallet">
-                        <Link />
-                      </OperationButton>
+                      <ButtonMateriaConfirmed
+                        onClick={toggleWalletModal}
+                        className={`connect-wallet-button ${theme.name}`}
+                        label="Connect Wallet"
+                      >
+                        <AutoRow gap="6px" justify="center">
+                          Connect Wallet <Link />
+                        </AutoRow>
+
+                      </ButtonMateriaConfirmed>
                     ) : (
                       <DynamicGrid columns={2} className="mt20">
                         <div className="text-left">

@@ -19,6 +19,13 @@ import { images } from './images'
 import DavidFensTff from './fonts/DavidFens/DavidFens.ttf'
 import DavidFensWoff from './fonts/DavidFens/DavidFens.woff'
 import DavidFensWoff2 from './fonts/DavidFens/DavidFens.woff2'
+
+import CircularStdWoff2 from './fonts/CircularStd/0dd92fa15d777f537028.woff2'
+import CircularStdWoff from './fonts/CircularStd/4af43345ede3fd952823.woff'
+
+import CircularStdBlackWoff2 from './fonts/CircularStd/9eac4707a63fe42da7d6.woff2'
+import CircularStdBlackWoff from './fonts/CircularStd/fb3a34fc1c30b5120300.woff'
+
 import { ExternalLink } from './components'
 export * from './components'
 
@@ -431,6 +438,24 @@ export const TYPE = {
 export const FixedGlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 @font-face { font-family: 'DavidFens'; src: url(${DavidFensWoff2}) format('woff2'), url(${DavidFensWoff}) format('woff'), url(${DavidFensTff}) format('truetype'); }
+@font-face {
+	font-weight: 100;
+	font-family: "Circular Std";
+	src: 
+		local('Circular Std Medium'), 
+		url(${CircularStdWoff}) format("woff"), 
+		url(${CircularStdWoff2}) format("woff2");
+}
+
+@font-face {
+	font-weight: 700;
+	font-family: "Circular Std";
+	src: 
+		local('Circular Std Black'), 
+		url(${CircularStdBlackWoff}) format("woff"), 
+		url(${CircularStdBlackWoff2}) format("woff2");
+}
+
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 html, body { margin: 0; padding: 0; }

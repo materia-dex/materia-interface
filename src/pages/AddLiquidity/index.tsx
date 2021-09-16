@@ -4,7 +4,7 @@ import { ADD_LIQUIDITY_ACTION_SAFE_TRANSFER_TOKEN, Currency, currencyEquals, ETH
 import React, { useCallback, useContext, useState, useMemo, useEffect } from 'react'
 import ReactGA from 'react-ga'
 import { NavLink, RouteComponentProps } from 'react-router-dom'
-import { ButtonMateriaError, ButtonMateriaPrimary } from '../../components/Button'
+import { ButtonMateriaConfirmed, ButtonMateriaError, ButtonMateriaPrimary } from '../../components/Button'
 import { LightCard } from '../../components/Card'
 import { AutoColumn, ColumnCenter } from '../../components/Column'
 import TransactionConfirmationModal, { ConfirmationModalContent } from '../../components/TransactionConfirmationModal'
@@ -383,29 +383,29 @@ export default function AddLiquidity({
         </LightCard>
       </AutoColumn>
     ) : (
-        <AutoColumn gap="20px">
-          <RowFlat style={{ marginTop: '20px' }}>
-            <Text fontSize="48px" fontWeight={900} lineHeight="42px" marginRight={10}>
-              {liquidityMinted?.toSignificant(6)}
-            </Text>
-            <DoubleCurrencyLogo
-              currency0={currencies[Field.CURRENCY_A]}
-              currency1={currencies[Field.CURRENCY_B]}
-              size={30}
-              radius={true}
-            />
-          </RowFlat>
-          <Row>
-            <Text fontSize="24px">
-              {currencies[Field.CURRENCY_A]?.symbol + '/' + currencies[Field.CURRENCY_B]?.symbol + ' Pool Tokens'}
-            </Text>
-          </Row>
-          <TYPE.italic fontSize={12} textAlign="left" padding={'8px 0 0 0 '}>
-            {`Output is estimated. If the price changes by more than ${allowedSlippage /
-              100}% your transaction will revert.`}
-          </TYPE.italic>
-        </AutoColumn>
-      )
+      <AutoColumn gap="20px">
+        <RowFlat style={{ marginTop: '20px' }}>
+          <Text fontSize="48px" fontWeight={900} lineHeight="42px" marginRight={10}>
+            {liquidityMinted?.toSignificant(6)}
+          </Text>
+          <DoubleCurrencyLogo
+            currency0={currencies[Field.CURRENCY_A]}
+            currency1={currencies[Field.CURRENCY_B]}
+            size={30}
+            radius={true}
+          />
+        </RowFlat>
+        <Row>
+          <Text fontSize="24px">
+            {currencies[Field.CURRENCY_A]?.symbol + '/' + currencies[Field.CURRENCY_B]?.symbol + ' Pool Tokens'}
+          </Text>
+        </Row>
+        <TYPE.italic fontSize={12} textAlign="left" padding={'8px 0 0 0 '}>
+          {`Output is estimated. If the price changes by more than ${allowedSlippage /
+            100}% your transaction will revert.`}
+        </TYPE.italic>
+      </AutoColumn>
+    )
   }
 
   const modalBottom = () => {
@@ -541,12 +541,12 @@ export default function AddLiquidity({
                     ))}
                   </>
                 ) : (
-                        <EmptyProposals className={theme.name}>
-                          <SimpleTextParagraph className={`p20 text-center ${theme.name}`}>
-                            No liquidity found.
-                          </SimpleTextParagraph>
-                        </EmptyProposals>
-                      )}
+                  <EmptyProposals className={theme.name}>
+                    <SimpleTextParagraph className={`p20 text-center ${theme.name}`}>
+                      No liquidity found.
+                    </SimpleTextParagraph>
+                  </EmptyProposals>
+                )}
               </Scrollbars>
               <SimpleTextParagraph className={`text-left m0 ${theme.name}`}>
                 Don't see a pool you joined? <StyledInternalLink className={`${theme.name}`} id="refresh-pool-link" to={'#'} onClick={onLiquidityPoolsUpdate}>Refresh</StyledInternalLink> your pools or <StyledInternalLink className={`${theme.name}`} id="import-pool-link" to={'/find'}>import it</StyledInternalLink>.
@@ -625,7 +625,7 @@ export default function AddLiquidity({
                       You are the first liquidity provider.<br />
                       The ratio of tokens you add will set the price of this pool.<br />
                       Once you are happy with the rate click supply to review.
-                      </SimpleTextParagraph>
+                    </SimpleTextParagraph>
                   </ColumnCenter>
                 ))}
               {currencies[Field.CURRENCY_A] && currencies[Field.CURRENCY_B] && pairState !== PairState.INVALID && (
@@ -642,63 +642,70 @@ export default function AddLiquidity({
             {pair && !noLiquidity && pairState !== PairState.INVALID ? (<MinimalPositionCard showUnwrapped={oneCurrencyIsIETH} pair={pair} />) : null}
             {!account ? (
               <ColumnCenter>
-                <OperationButton onClick={toggleWalletModal} className={`connect-wallet-button ${theme.name}`} label="Connect Wallet">
-                  <Link />
-                </OperationButton>
+                <ButtonMateriaConfirmed
+                  onClick={toggleWalletModal}
+                  className={`connect-wallet-button ${theme.name}`}
+                  label="Connect Wallet"
+                >
+                  <AutoRow gap="6px" justify="center">
+                    Connect Wallet <Link />
+                  </AutoRow>
+
+                </ButtonMateriaConfirmed>
               </ColumnCenter>
             ) : (
-                <AutoColumn gap={'md'}>
-                  <DynamicGrid className={theme.name} columns={
-                    (approvalA === ApprovalState.NOT_APPROVED || approvalA === ApprovalState.PENDING) &&
-                      (approvalB === ApprovalState.NOT_APPROVED || approvalB === ApprovalState.PENDING) ? 3 :
-                      (((approvalA === ApprovalState.NOT_APPROVED || approvalA === ApprovalState.PENDING) ||
-                        (approvalB === ApprovalState.NOT_APPROVED || approvalB === ApprovalState.PENDING)) ? 2 : 1)
-                  }>
-                    <>
-                      {(approvalA === ApprovalState.NOT_APPROVED ||
-                        approvalA === ApprovalState.PENDING ||
-                        approvalB === ApprovalState.NOT_APPROVED ||
-                        approvalB === ApprovalState.PENDING) &&
-                        isValid && (
-                          <>
-                            {approvalA !== ApprovalState.APPROVED && (
-                              <div className="text-centered">
-                                <MainOperationButton
-                                  className={theme.name}
-                                  onClick={approveACallback}
-                                  disabled={approvalA === ApprovalState.PENDING}>
-                                  {approvalA === ApprovalState.PENDING ? (
-                                    <Dots>Approving {currencies[Field.CURRENCY_A]?.symbol}</Dots>
-                                  ) : ('Approve ' + currencies[Field.CURRENCY_A]?.symbol)}
-                                </MainOperationButton>
-                              </div>
-                            )}
-                            {approvalB !== ApprovalState.APPROVED && (
-                              <div className="text-centered">
-                                <MainOperationButton
-                                  className={theme.name}
-                                  onClick={approveBCallback}
-                                  disabled={approvalB === ApprovalState.PENDING}>
-                                  {approvalB === ApprovalState.PENDING ? (
-                                    <Dots>Approving {currencies[Field.CURRENCY_B]?.symbol}</Dots>
-                                  ) : ('Approve ' + currencies[Field.CURRENCY_B]?.symbol)}
-                                </MainOperationButton>
-                              </div>
-                            )}
-                          </>
-                        )}
-                      <div className="text-centered">
-                        <ButtonMateriaError
-                          onClick={() => { expertMode ? onAdd(checkIsEthItem) : setShowConfirm(true) }}
-                          disabled={!isValid || approvalA !== ApprovalState.APPROVED || approvalB !== ApprovalState.APPROVED}
-                          error={!isValid && !!parsedAmounts[Field.CURRENCY_A] && !!parsedAmounts[Field.CURRENCY_B]} >
-                          {error ?? 'Supply'}
-                        </ButtonMateriaError>
-                      </div>
-                    </>
-                  </DynamicGrid>
-                </AutoColumn>
-              )}
+              <AutoColumn gap={'md'}>
+                <DynamicGrid className={theme.name} columns={
+                  (approvalA === ApprovalState.NOT_APPROVED || approvalA === ApprovalState.PENDING) &&
+                    (approvalB === ApprovalState.NOT_APPROVED || approvalB === ApprovalState.PENDING) ? 3 :
+                    (((approvalA === ApprovalState.NOT_APPROVED || approvalA === ApprovalState.PENDING) ||
+                      (approvalB === ApprovalState.NOT_APPROVED || approvalB === ApprovalState.PENDING)) ? 2 : 1)
+                }>
+                  <>
+                    {(approvalA === ApprovalState.NOT_APPROVED ||
+                      approvalA === ApprovalState.PENDING ||
+                      approvalB === ApprovalState.NOT_APPROVED ||
+                      approvalB === ApprovalState.PENDING) &&
+                      isValid && (
+                        <>
+                          {approvalA !== ApprovalState.APPROVED && (
+                            <div className="text-centered">
+                              <MainOperationButton
+                                className={theme.name}
+                                onClick={approveACallback}
+                                disabled={approvalA === ApprovalState.PENDING}>
+                                {approvalA === ApprovalState.PENDING ? (
+                                  <Dots>Approving {currencies[Field.CURRENCY_A]?.symbol}</Dots>
+                                ) : ('Approve ' + currencies[Field.CURRENCY_A]?.symbol)}
+                              </MainOperationButton>
+                            </div>
+                          )}
+                          {approvalB !== ApprovalState.APPROVED && (
+                            <div className="text-centered">
+                              <MainOperationButton
+                                className={theme.name}
+                                onClick={approveBCallback}
+                                disabled={approvalB === ApprovalState.PENDING}>
+                                {approvalB === ApprovalState.PENDING ? (
+                                  <Dots>Approving {currencies[Field.CURRENCY_B]?.symbol}</Dots>
+                                ) : ('Approve ' + currencies[Field.CURRENCY_B]?.symbol)}
+                              </MainOperationButton>
+                            </div>
+                          )}
+                        </>
+                      )}
+                    <div className="text-centered">
+                      <ButtonMateriaError
+                        onClick={() => { expertMode ? onAdd(checkIsEthItem) : setShowConfirm(true) }}
+                        disabled={!isValid || approvalA !== ApprovalState.APPROVED || approvalB !== ApprovalState.APPROVED}
+                        error={!isValid && !!parsedAmounts[Field.CURRENCY_A] && !!parsedAmounts[Field.CURRENCY_B]} >
+                        {error ?? 'Supply'}
+                      </ButtonMateriaError>
+                    </div>
+                  </>
+                </DynamicGrid>
+              </AutoColumn>
+            )}
           </PageItemsContainer>
         </PageGridContainer>
       </AppBody>
