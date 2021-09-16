@@ -241,30 +241,31 @@ export default function Header() {
         </HeaderLinks>
       </HeaderRow>
       <HeaderControls>
-          <NetworkCard />
-          <HeaderElement>
-            <AccountElement active={!!account} style={{ pointerEvents: 'auto' }}>
-              {account && userEthBalance ? (
-                <HideExtraSmall style={{ flexShrink: 0 }} pl="0.75rem" pr="0.5rem">
-                  {userEthBalance?.toSignificant(4)} ETH
-                </HideExtraSmall>
-              ) : null}
-              <Web3Status />
-            </AccountElement>
-            <HideSmall>
-              {chainId && NETWORK_LABELS[chainId] && (
-                <NetworkCard title={NETWORK_LABELS[chainId]}>{NETWORK_LABELS[chainId]}</NetworkCard>
-              )}
-            </HideSmall>
-            {account && (
-              <CustomActionButton className={`claim-footer full-width ${theme.name}`} onClick={openClaimModal}>Claim GIL</CustomActionButton>
+        <NetworkCard />
+        <HeaderElement>
+          <AccountElement active={!!account} style={{ pointerEvents: 'auto' }}>
+            {account && userEthBalance ? (
+              <HideExtraSmall style={{ flexShrink: 0 }} pl="0.75rem" pr="0.5rem">
+                {userEthBalance?.toSignificant(4)} ETH
+              </HideExtraSmall>
+            ) : null}
+            <Web3Status />
+          </AccountElement>
+          <HideSmall>
+            {chainId && NETWORK_LABELS[chainId] && (
+              <NetworkCard title={NETWORK_LABELS[chainId]}>{NETWORK_LABELS[chainId]}</NetworkCard>
             )}
-
-            <IconButton className={`theme-icon mr10 ${theme.name}`} onClick={toggleDarkMode}>
-              {darkMode ? <Sun className={`footer-icon ${theme.name}`} /> : <Moon className={`footer-icon ${theme.name}`} />}
-            </IconButton>
-          </HeaderElement>
-        </HeaderControls>
+          </HideSmall>
+          {account && (
+            <CustomActionButton className={`claim-footer full-width ${theme.name}`} onClick={openClaimModal}>Claim GIL</CustomActionButton>
+          )}
+        </HeaderElement>
+        <HeaderElement>
+          <IconButton className={`theme-icon ${theme.name}`} onClick={toggleDarkMode}>
+            {darkMode ? <Sun className={`footer-icon ${theme.name}`} /> : <Moon className={`footer-icon ${theme.name}`} />}
+          </IconButton>
+        </HeaderElement>
+      </HeaderControls>
     </HeaderFrame>
   )
 }

@@ -1515,7 +1515,8 @@ const BaseButton = styled(Button) <{ width?: string; borderRadius?: string; sele
 export const IconButton = styled(BaseButton) <{ width?: string; borderRadius?: string; selected?: boolean }>`
   cursor: pointer;
   width: fit-content;
-  margin-left: 10px;
+  margin-left: 0.4rem !important;
+  margin-right: 0.4rem !important;
   border-color: rgba(4, 4, 5, 0.1);
     color: rgba(4, 4, 5, 0.8);
     background: transparent;
