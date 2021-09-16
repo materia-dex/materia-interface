@@ -93,12 +93,12 @@ export default function PoolFinder() {
           {currency0 ? (
             <Row>
               <CurrencyLogo currency={currency0} />
-              <Text fontWeight={500} fontSize={20} marginLeft={'12px'}>
+              <Text fontWeight={900} fontSize={20} marginLeft={'12px'}>
                 {currency0.symbol}
               </Text>
             </Row>
           ) : (
-            <Text fontWeight={500} fontSize={20} marginLeft={'12px'}>
+            <Text fontWeight={900} fontSize={20} marginLeft={'12px'}>
               Select a Token
             </Text>
           )}
@@ -117,12 +117,12 @@ export default function PoolFinder() {
           {currency1 ? (
             <Row>
               <CurrencyLogo currency={currency1} />
-              <Text fontWeight={500} fontSize={20} marginLeft={'12px'}>
+              <Text fontWeight={900} fontSize={20} marginLeft={'12px'}>
                 {currency1.symbol}
               </Text>
             </Row>
           ) : (
-            <Text fontWeight={500} fontSize={20} marginLeft={'12px'}>
+            <Text fontWeight={900} fontSize={20} marginLeft={'12px'}>
               Select a Token
             </Text>
           )}
@@ -132,7 +132,7 @@ export default function PoolFinder() {
           <ColumnCenter
             style={{ justifyItems: 'center', backgroundColor: '', padding: '12px 0px', borderRadius: '12px' }}
           >
-            <Text textAlign="center" fontWeight={500}>
+            <Text textAlign="center" fontWeight={900}>
               Pool Found!
             </Text>
             <StyledInternalLink to={`/pool`}>
@@ -167,7 +167,7 @@ export default function PoolFinder() {
           ) : pairState === PairState.INVALID ? (
             <LightCard padding="45px 10px">
               <AutoColumn gap="sm" justify="center">
-                <Text textAlign="center" fontWeight={500}>
+                <Text textAlign="center" fontWeight={900}>
                   Invalid pair.
                 </Text>
               </AutoColumn>

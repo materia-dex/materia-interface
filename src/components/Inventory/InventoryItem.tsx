@@ -13,6 +13,7 @@ import { ChevronUp, ChevronDown, ExternalLink, Copy } from 'react-feather'
 import useAddTokenToMetamask from '../../hooks/useAddTokenToMetamask'
 import { getEtherscanLink } from '../../utils'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
+import CurrencyLogo from '../CurrencyLogo'
 
 export const FixedHeightRow = styled(RowBetween)`
   height: auto;
@@ -43,14 +44,15 @@ export default function InventoryItem({
 
   const { library, chainId } = useActiveWeb3React()
 
+
   const onTokenSelection = useCallback(
     token => {
       let currency = ETHER
 
       if (token.symbol != 'ETH') {
+        if (token!=null || undefined)
         currency = unwrappedToken(token)
       }
-
       onCurrencySelect(currency)
     },
     [onCurrencySelect]
@@ -61,7 +63,8 @@ export default function InventoryItem({
   return (
     <InventoryItemContainer className={theme.name}>
       <InventoryGridContainer>
-        <div>
+        <CurrencyLogo currency={token} size={'60px'} />
+        <div className="ml10">
           <div>
             {tokenName} ({tokenSymbol})
           </div>
@@ -74,6 +77,23 @@ export default function InventoryItem({
               </span>
             )}
           </div>
+          {token.symbol != 'ETH' && (
+          <AutoColumn>
+            <div className="addressRow">
+              <div>Address:</div>
+              <Link href={getEtherscanLink(chainId ?? 1, tokenAddress ?? '', 'token')}>
+                <Text className={` token-address ${theme.name}`}>
+                  {tokenAddress && tokenAddress.slice(0, 6) + '...' + tokenAddress?.slice(38, 42)}
+                </Text>
+              </Link>
+              <CopyToClipboard text={tokenAddress != undefined ? tokenAddress : ''}>
+                <IconButton className={theme.name}>
+                  <Copy />
+                </IconButton>
+              </CopyToClipboard>
+            </div>
+          </AutoColumn>
+          )}
         </div>
         <div className="margin-pull-right">
           <IconButton
@@ -133,40 +153,8 @@ export default function InventoryItem({
               </svg>
             </IconButton>
           )}
-          {token.symbol != 'ETH' && (
-            <IconButton
-              className={`${theme.name}`}
-              onClick={() => {
-                setShowMore(!showMore)
-              }}
-            >
-              {showMore ? <ChevronUp /> : <ChevronDown />}
-            </IconButton>
-          )}
         </div>
       </InventoryGridContainer>
-
-      {showMore && (
-        <AutoColumn>
-          <div className="addressRow">
-            <div>Address:</div>
-            <Link href={getEtherscanLink(chainId ?? 1, tokenAddress ?? '', 'token')}>
-              <Text className={` token-address ${theme.name}`}>
-                {tokenAddress && tokenAddress.slice(0, 6) + '...' + tokenAddress?.slice(38, 42)}
-              </Text>
-            </Link>
-            <CopyToClipboard text={tokenAddress != undefined ? tokenAddress : ''}>
-              <IconButton className={theme.name}>
-                <Copy />
-              </IconButton>
-            </CopyToClipboard>
-          </div>
-          <div className="decimalsRow">
-            <div>Decimals:</div>
-            <Text className={` token-decimals ${theme.name}`}>{token && token?.decimals}</Text>
-          </div>
-        </AutoColumn>
-      )}
     </InventoryItemContainer>
   )
 }

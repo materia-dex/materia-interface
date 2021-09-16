@@ -44,11 +44,11 @@ export default function App() {
       <Route component={GoogleAnalyticsReporter} />
       <Route component={DarkModeQueryParamReader} />
       <AppWrapper>
-        <div className={`appBackground ${theme.name}`}>
+        {/* <div className={`appBackground ${theme.name}`}>
           <div className="galaxy">
             <div className="stars"></div>
           </div>
-        </div>
+        </div> */}
         <URLWarning />
         <HeaderWrapper>
           <Header />

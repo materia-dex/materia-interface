@@ -29,27 +29,6 @@ import { RowBetween, RowFixed } from '../Row'
 import Toggle from '../Toggle'
 import TransactionSettings from '../TransactionSettings'
 
-const StyledMenuText = styled.b`
-  :hover { cursor: pointer; }
-  margin-top: -0.3rem;
-`
-
-const StyledMenuButton = styled.button`
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border: none;
-  background-color: transparent;
-  margin: 0;
-  padding: 0;
-  height: 35px;
-
-  padding: 0.15rem 0.5rem;
-  border-radius: 0.5rem;
-
-  :hover, :focus { cursor: pointer; outline: none; }
-  svg { margin-top: 2px; }
-`
 
 const StyledMenu = styled.div`
   margin-left: 0.5rem;
@@ -57,7 +36,7 @@ const StyledMenu = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
-  border: none;
+  border-radius: 16px;
   text-align: left;
 `
 
@@ -132,12 +111,6 @@ export default function SettingsTab() {
                   isActive={expertMode}
                   toggle={ expertMode ? () => { toggleExpertMode(); setShowConfirmation(false); } : () => { toggle(); setShowConfirmation(true); } } />
               </RowBetween>
-              <RowBetween>
-                <RowFixed>
-                  <div className={ `sectionOption ${theme.name}` }>Toggle Classic Mode</div>
-                </RowFixed>
-                <Toggle isActive={classicMode} toggle={toggleClassicMode} />
-              </RowBetween> 
             </AutoColumn>
             </SettingsFlyout>
         </SecondaryPanelBoxContainer>

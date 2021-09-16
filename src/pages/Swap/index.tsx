@@ -74,6 +74,7 @@ export const ButtonBgItem = styled.img`
 const TradeCard = styled(Card)`
   display: flex;
   justify-content: center;
+  text-align: center;
 `
 export const Center = styled.div`
   display: flex;
@@ -387,7 +388,7 @@ export default function Swap() {
                   className={`tabLinkItem ${theme.name}`}
                   isActive={(match, { pathname }) => Boolean(match) || pathname.startsWith('/batch-swap')}
                 >
-                  <span>Batch SWAP</span> {/* <BatchSwapIcon/> */}{' '}
+                  <span>Batch</span> {/* <BatchSwapIcon/> */}{' '}
                 </TabLinkItem>
                 <TabLinkItem
                   id={`classic-swap`}
@@ -395,7 +396,7 @@ export default function Swap() {
                   className={`tabLinkItem ${theme.name}`}
                   isActive={(match, { pathname }) => Boolean(match) || pathname.startsWith('/swap')}
                 >
-                  <span>Classic SWAP</span> {/* <ClassicSwapIcon/> */}{' '}
+                  <span>Classic</span> {/* <ClassicSwapIcon/> */}{' '}
                 </TabLinkItem>
               </TabsBar>
               <div className="clear-fix">
@@ -417,7 +418,7 @@ export default function Swap() {
                   </div>
                   <TradePriceContainer>
                     <AutoColumn justify="space-between">
-                      <AutoRow justify={isExpertMode ? 'space-between' : 'center'} style={{ padding: '0 1rem' }}>
+                      <AutoRow justify={isExpertMode ? 'space-between' : 'center'} style={{ padding: '1rem' }}>
                         <SwitchButton
                           className={` ${isExpertMode ? 'expert-mode' : ''} ${theme.name} ${
                             originalCurrencies[Field.INPUT] && originalCurrencies[Field.OUTPUT] ? '' : 'disabled'

@@ -1,16 +1,24 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
 import { darken } from 'polished'
 
-import styled from 'styled-components'
+import styled, { ThemeContext } from 'styled-components'
 
 import Logo from '../../assets/images/materia-logo-light.png'
 import LogoDark from '../../assets/images/materia-logo.png'
 import { useClassicModeManager, useDarkModeManager } from '../../state/user/hooks'
-import { ExternalLink } from '../../theme'
+import { AccountElement, CustomActionButton, ExternalLink, HeaderWrapper, HideExtraSmall, HideSmall, IconButton } from '../../theme'
 
 import Row, { RowFixed } from '../Row'
 import { MATERIA_DFO_ADDRESS } from '../../constants'
+import Web3Status from '../Web3Status'
+import { Moon, Sun } from 'react-feather'
+import { TransparentCard } from '../Card'
+import { useActiveWeb3React } from '../../hooks'
+import { useETHBalances } from '../../state/wallet/hooks'
+import { useToggleModal } from '../../state/application/hooks'
+import { ApplicationModal } from '../../state/application/actions'
+import { ChainId } from '@materia-dex/sdk'
 
 const HeaderFrame = styled.div`
   display: grid;
@@ -19,6 +27,9 @@ const HeaderFrame = styled.div`
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
+  font-weight: 900;
+  font-size: 15px;
+  color: ${({ theme }) => theme.text1};
   width: 100%;
   top: 0;
   position: relative;
@@ -73,6 +84,60 @@ const MateriaIcon = styled.div`
   }
 `
 
+const StyledButton = styled.button`
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  color: ${({ theme }) => theme.text1};
+  :focus {
+    outline: none;
+  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  :hover {
+    cursor: pointer;
+  }
+`
+
+const NetworkCard = styled(TransparentCard)`
+  border-radius: 12px;
+  padding: 8px 12px;
+  ${({ theme }) => theme.mediaWidth.upToSmall`
+    margin: 0;
+    margin-right: 0.5rem;
+    width: initial;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-shrink: 1;
+  `};
+`
+
+const HeaderControls = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-self: flex-end;
+`
+
+const HeaderElement = styled.div`
+  display: flex;
+  align-items: center;
+  /* addresses safari's lack of support for "gap" */
+  & > *:not(:first-child) {
+    margin-left: 8px;
+  }
+  ${({ theme }) => theme.mediaWidth.upToMedium`
+    align-items: center;
+  `};
+`
+
+const NETWORK_LABELS: { [chainId in ChainId]?: string } = {
+  [ChainId.RINKEBY]: 'Rinkeby',
+  [ChainId.ROPSTEN]: 'Ropsten',
+  [ChainId.GÖRLI]: 'Görli',
+  [ChainId.KOVAN]: 'Kovan'
+}
+
 const activeClassName = 'ACTIVE'
 
 const StyledNavLink = styled(NavLink).attrs({
@@ -84,46 +149,36 @@ const StyledNavLink = styled(NavLink).attrs({
   outline: none;
   cursor: pointer;
   text-decoration: none;
-  color: ${({ theme }) => theme.text2};
-  font-size: 1rem;
   width: fit-content;
   margin: 0 12px;
-  font-weight: 500;
 
   &.${activeClassName} {
-    // border-radius: 12px;
-    font-weight: 600;
-    color: ${({ theme }) => theme.cyan1};
+    color: ${({ theme }) => darken(0.1, theme.text1)};
   }
 
   :hover,
-  :focus { color: ${({ theme }) => darken(0.1, theme.cyan1)}; }
+  :focus { color: ${({ theme }) => darken(0.1, theme.text1)}; }
 `
 
 const StyledExternalLink = styled(ExternalLink).attrs({
   activeClassName
-})<{ isActive?: boolean }>`
+}) <{ isActive?: boolean }>`
   ${({ theme }) => theme.flexRowNoWrap}
   align-items: left;
   border-radius: 3rem;
   outline: none;
   cursor: pointer;
   text-decoration: none;
-  color: ${({ theme }) => theme.text2};
-  font-size: 1rem;
   width: fit-content;
   margin: 0 12px;
-  font-weight: 500;
 
   &.${activeClassName} {
-    // border-radius: 12px;
-    font-weight: 600;
-    color: ${({ theme }) => theme.cyan2};
+    font-weight: 900;
   }
 
   :hover,
   :focus {
-    color: ${({ theme }) => darken(0.1, theme.cyan2)};
+    color: ${({ theme }) => darken(0.1, theme.text1)};
   }
 
   ${({ theme }) => theme.mediaWidth.upToExtraSmall`
@@ -134,19 +189,24 @@ const StyledExternalLink = styled(ExternalLink).attrs({
 export default function Header() {
   const [isDark] = useDarkModeManager()
   const [isClassic] = useClassicModeManager()
+  const { account, chainId } = useActiveWeb3React()
+  const userEthBalance = useETHBalances(account ? [account] : [])?.[account ?? '']
+  const [darkMode, toggleDarkMode] = useDarkModeManager()
+  const theme = useContext(ThemeContext)
+  const openClaimModal = useToggleModal(ApplicationModal.ADDRESS_CLAIM)
 
   return (
     <HeaderFrame>
       <HeaderRow>
         <Title href=".">
           <MateriaIcon>
-            <img width={'100px'} src={isDark||isClassic ? LogoDark : Logo} alt="logo" />
+            <img width={'100px'} src={isDark || isClassic ? LogoDark : Logo} alt="logo" />
           </MateriaIcon>
         </Title>
         <HeaderLinks>
-          <StyledNavLink 
-            id={`swap-nav-link`} 
-            to={'/swap'} 
+          <StyledNavLink
+            id={`swap-nav-link`}
+            to={'/swap'}
             isActive={(match, { pathname }) =>
               Boolean(match) ||
               pathname.startsWith('/swap') ||
@@ -172,17 +232,39 @@ export default function Header() {
           <StyledNavLink id={`stake-nav-link`} to={'/lm'}>
             LM
           </StyledNavLink>
-          <StyledExternalLink id={`stake-nav-link`} href={'https://dapp.dfohub.com/?addr='+ MATERIA_DFO_ADDRESS}>
-            Governance <span style={{ fontSize: '11px' }}>↗</span> 
-          </StyledExternalLink>
-          <StyledExternalLink id={`stake-nav-link`} href={'https://covenants.eth.link/#/wusd/dapp'}>
-            WUSD <span style={{ fontSize: '11px' }}>↗</span> 
+          <StyledExternalLink id={`stake-nav-link`} href={'https://dapp.dfohub.com/?addr=' + MATERIA_DFO_ADDRESS}>
+            Governance <span style={{ fontSize: '11px' }}>↗</span>
           </StyledExternalLink>
           <StyledExternalLink id={`stake-nav-link`} href={'https://ethitem.com'}>
-            EthItem <span style={{ fontSize: '11px' }}>↗</span> 
+            EthItem <span style={{ fontSize: '11px' }}>↗</span>
           </StyledExternalLink>
         </HeaderLinks>
       </HeaderRow>
+      <HeaderControls>
+          <NetworkCard />
+          <HeaderElement>
+            <AccountElement active={!!account} style={{ pointerEvents: 'auto' }}>
+              {account && userEthBalance ? (
+                <HideExtraSmall style={{ flexShrink: 0 }} pl="0.75rem" pr="0.5rem">
+                  {userEthBalance?.toSignificant(4)} ETH
+                </HideExtraSmall>
+              ) : null}
+              <Web3Status />
+            </AccountElement>
+            <HideSmall>
+              {chainId && NETWORK_LABELS[chainId] && (
+                <NetworkCard title={NETWORK_LABELS[chainId]}>{NETWORK_LABELS[chainId]}</NetworkCard>
+              )}
+            </HideSmall>
+            {account && (
+              <CustomActionButton className={`claim-footer full-width ${theme.name}`} onClick={openClaimModal}>Claim GIL</CustomActionButton>
+            )}
+
+            <IconButton className={`theme-icon mr10 ${theme.name}`} onClick={toggleDarkMode}>
+              {darkMode ? <Sun className={`footer-icon ${theme.name}`} /> : <Moon className={`footer-icon ${theme.name}`} />}
+            </IconButton>
+          </HeaderElement>
+        </HeaderControls>
     </HeaderFrame>
   )
 }

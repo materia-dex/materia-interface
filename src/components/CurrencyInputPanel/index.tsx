@@ -19,7 +19,6 @@ import Slider from '../Slider'
 
 const InputRow = styled.div<{ selected: boolean }>`
   ${({ theme }) => theme.flexRowNoWrap}
-  width: 95% !important;
   align-items: center;
   padding: ${({ selected }) => (selected ? '0.75rem 0.5rem 0.75rem 1rem' : '0.75rem 0.75rem 0.75rem 1rem')};
 `
@@ -92,7 +91,7 @@ const StyledTokenName = styled.span<{ active?: boolean }>`
   ${({ active }) => (active ? '  margin: 0 0.25rem 0 0.75rem;' : '  margin: 0 0.25rem 0 0.25rem;')}
   font-size:  ${({ active }) => (active ? '20px' : '16px')};
   color: ${({ theme }) => theme.text1};
-
+  font-weight:900;
   &.classic { 
     text-shadow: 1px 1px 1px ${({ theme }) => theme.black};
   }
@@ -178,6 +177,39 @@ export default function CurrencyInputPanel({
     <>
       <CurrencyFormPanel id={id} className={`${theme.name} ${customFatherPageCssClass}`}>
         <div className={'itemsContainer ' + customFatherPageCssClass}>
+          {account && currency && showMaxButton && label !== 'To' && (
+            <ActionButton className={theme.name} onClick={onMax}>
+              MAX
+            </ActionButton>
+          )}
+          {currency && showErc20Badge && (
+            <Erc20Badge className={`${theme.name} ml5 mb5`} width={badgeWidth}>
+              ERC20
+            </Erc20Badge>
+          )}
+          {currency && showEthItemBadge && (
+            <EthItemBadge className={`${theme.name} ml5 mb5`} width={badgeWidth}>
+              ITEM
+            </EthItemBadge>
+          )}
+          {!smallTokenImage && (
+            <TokenImageContainer>
+              <TokenImage showBackground={true} className={(!pair ? 'single' : 'double') + ' ' + customFatherPageCssClass}>
+                {pair ? (
+                  <DoubleCurrencyLogo
+                    currency0={pair.token0}
+                    currency1={pair.token1}
+                    size={110}
+                    margin={false}
+                    radius={true}
+                  />
+                ) : currency ? (
+                  <CurrencyLogo currency={currency} size={'110px'} />
+                ) : null}
+              </TokenImage>
+            </TokenImageContainer>
+          )}
+
           {!hideInput && (
             <div className={'labelRow ' + customFatherPageCssClass}>
               <RowBetween>
@@ -224,21 +256,6 @@ export default function CurrencyInputPanel({
                       onUserInput(val)
                     }}
                   />
-                )}
-                {account && currency && showMaxButton && label !== 'To' && (
-                  <ActionButton className={theme.name} onClick={onMax}>
-                    MAX
-                  </ActionButton>
-                )}
-                {currency && showErc20Badge && (
-                  <Erc20Badge className={`${theme.name} ml5`} width={badgeWidth}>
-                    ERC20
-                  </Erc20Badge>
-                )}
-                {currency && showEthItemBadge && (
-                  <EthItemBadge className={`${theme.name} ml5`} width={badgeWidth}>
-                    ITEM
-                  </EthItemBadge>
                 )}
               </>
             )}
@@ -291,23 +308,6 @@ export default function CurrencyInputPanel({
           />
         )}
       </CurrencyFormPanel>
-      {!smallTokenImage && (
-        <TokenImageContainer>
-          <TokenImage showBackground={true} className={(!pair ? 'single' : 'double') + ' ' + customFatherPageCssClass}>
-            {pair ? (
-              <DoubleCurrencyLogo
-                currency0={pair.token0}
-                currency1={pair.token1}
-                size={110}
-                margin={false}
-                radius={true}
-              />
-            ) : currency ? (
-              <CurrencyLogo currency={currency} size={'110px'} />
-            ) : null}
-          </TokenImage>
-        </TokenImageContainer>
-      )}
     </>
   )
 }

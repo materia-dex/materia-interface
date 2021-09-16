@@ -17,7 +17,7 @@ export default function Inventory({ onCurrencySelect }: InventoryProps) {
   return (
     <InventoryContainer>
       <SectionTitle className={theme.name}>Inventory</SectionTitle>
-      <Scrollbars autoHeight autoHeightMin={560} autoHeightMax={560} autoHide>
+      <Scrollbars autoHeight autoHeightMin={550} autoHide>
         {userTokens && userTokens.length > 0 ? (
           userTokens.map((userToken: any) => {
             if (userToken && userToken.token) {
@@ -51,7 +51,7 @@ export default function Inventory({ onCurrencySelect }: InventoryProps) {
             }
           })
         ) : (
-          <SimpleInformationsTextParagraph className={theme.name}>
+          <SimpleInformationsTextParagraph className={"ml15 " + theme.name} >
             No items in your inventory
           </SimpleInformationsTextParagraph>
         )}

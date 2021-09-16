@@ -30,7 +30,7 @@ export default function Menu() {
       <IconButton onClick={toggle} className={`menuIcon ${theme.name}`}>
         <MenuIcon className={`footer-icon ${theme.name}`} />
       </IconButton>
-      <div className={ `custom-label ${theme.name}` } onClick={toggle}>Menu</div>
+      <div className={ `custom-label ${theme.name}` } onClick={toggle}></div>
       {open && (
         <MenuFlyout className={theme.name}>
           <MenuItem id="link" href="https://materiadex.com/" className={theme.name}>

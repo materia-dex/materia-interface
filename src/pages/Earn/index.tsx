@@ -56,15 +56,14 @@ export default function Earn() {
           <PageItemsContainer className={theme.name}>
             <TabsBar className={theme.name}>
               <DynamicGrid className={theme.name} columns={2}>
-                <div className={`text-left title ${theme.name}`}>Participating pools</div>
-                <div className="text-right">
+                <div className="text-left">
                   <Countdown exactEnd={stakingInfoSeasonTwo?.[0]?.periodFinish} />
                 </div>
               </DynamicGrid>
             </TabsBar>
             <div className="clear-fix">
               <PageContentContainer className={`one ${theme.name}`}>
-                <SectionTitle className={`mt10 ${theme.name}`}>Season two</SectionTitle>
+                <SectionTitle className={` ${theme.name}`}>Season two</SectionTitle>
 
                 <PoolSection>
                   {stakingRewardsExistSeasonTwo && stakingInfoSeasonTwo?.length === 0 ? (

@@ -352,7 +352,7 @@ export function useDerivedSwapInfo(
 }
 
 function parseCurrencyFromURLParameter(urlParam: any, chainId: ChainId | undefined): string {
-  const defaultCurrency = chainId ? WUSD[chainId]?.address ?? 'ETH' : 'ETH'
+  const defaultCurrency = chainId ? 'ETH' : ''
 
   if (typeof urlParam === 'string') {
     const valid = isAddress(urlParam)

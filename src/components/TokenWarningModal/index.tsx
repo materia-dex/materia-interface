@@ -16,7 +16,7 @@ import { ButtonMateriaError } from '../Button'
 const Wrapper = styled.div<{ error: boolean }>`
   background: ${({ theme }) => transparentize(0.6, theme.bg3)};
   padding: 0.75rem;
-  border-radius: 5px;
+  border-radius: 16px;
 `
 
 const WarningContainer = styled.div`

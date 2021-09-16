@@ -55,9 +55,10 @@ const UpperSection = styled.div`
 const InfoCard = styled.div`
   padding: 1rem;
   border: 1px solid ${({ theme }) => theme.cyan2};
-  // border-radius: 20px;
+  border-radius: 16px;
   position: relative;
   display: grid;
+  font-weight: 900;
   grid-row-gap: 12px;
   margin-bottom: 20px;
 `
@@ -98,10 +99,7 @@ const LowerSection = styled.div`
   padding: 1.5rem;
   flex-grow: 1;
   overflow: auto;
-  background-color: ${({ theme }) => theme.bg2};
-  // border-bottom-left-radius: 20px;
-  // border-bottom-right-radius: 20px;
-
+  background-color: transparent};
   h5 {
     margin: 0;
     font-weight: 400;

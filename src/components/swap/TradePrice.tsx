@@ -36,7 +36,7 @@ export default function TradePrice({ price, originalCurrencies, showInverted, se
 
   return (
     <Text
-      fontWeight={500}
+      fontWeight={900}
       fontSize={14}
       color={theme.text2}
       style={{ justifyContent: 'center', alignItems: 'center' }}
@@ -44,7 +44,7 @@ export default function TradePrice({ price, originalCurrencies, showInverted, se
       {show ? (
         <>
           <PriceLabel>
-            <TYPE.body color={theme.blue2} fontWeight={500} fontSize={14}>Price</TYPE.body>
+            <TYPE.body color={theme.blue2} fontWeight={900} fontSize={14}>Price</TYPE.body>
           </PriceLabel>
           <div>
             {tradePrice}

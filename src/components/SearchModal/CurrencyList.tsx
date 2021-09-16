@@ -117,7 +117,7 @@ function CurrencyRow({
     >
       <CurrencyLogo currency={currency} size={'24px'} />
       <Column>
-        <Text title={currency.name} fontWeight={500}>
+        <Text title={currency.name} fontWeight={900}>
           {currency.symbol}
         </Text>
         <FadedSpan>
@@ -135,7 +135,7 @@ function CurrencyRow({
             </TYPE.main>
           ) : null}
           {!isOnSelectedList && !customAdded ? (
-            <TYPE.main fontWeight={500}>
+            <TYPE.main fontWeight={900}>
               Found by address
               <LinkStyledButton
                 onClick={event => {

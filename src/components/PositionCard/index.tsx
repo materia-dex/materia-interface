@@ -176,7 +176,7 @@ export default function FullPositionCard({ pair, border }: PositionCardProps) {
         <FixedHeightRow>
           <RowFixed>
             <DoubleCurrencyLogo currency0={currency0} currency1={currency1} margin={true} size={14} radius={true} />
-            <Text fontWeight={500} fontSize={14}>
+            <Text fontWeight={900} fontSize={14}>
               {!currency0 || !currency1 ? <Dots>Loading</Dots> : `${currency0.symbol}/${currency1.symbol}`}
             </Text>
           </RowFixed>

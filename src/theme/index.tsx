@@ -132,14 +132,14 @@ export function colors(darkMode: boolean, classicMode: boolean): Colors {
     // text
     text1: classicMode ? '#FFFFFF' : darkMode ? '#FFFFFF' : '#000000',
     text2: classicMode ? '#C3C5CB' : darkMode ? '#C3C5CB' : '#565A69',
-    text3: classicMode ? '#6C7284' : darkMode ? '#6C7284' : '#888D9B',
+    text3: classicMode ? '#6C7284' : darkMode ? '#6C7284' : '#040405',
     text4: classicMode ? '#565A69' : darkMode ? '#565A69' : '#C3C5CB',
     text5: classicMode ? '#2C2F36' : darkMode ? '#2C2F36' : '#EDEEF2',
     text6: classicMode ? '#c4c8d7' : darkMode ? '#c4c8d7' : '#c4c8d7',
 
     // backgrounds / greys
     bg1: classicMode ? '#212429' : darkMode ? '#212429' : '#FFFFFF',
-    bg2: classicMode ? '#001835' : darkMode ? '#001835' : '#F7F8FA',
+    bg2: classicMode ? '#001835' : darkMode ? '#000000' : '#FFFFFF',
     bg3: classicMode ? '#40444F' : darkMode ? '#40444F' : '#EDEEF2',
     bg4: classicMode ? '#565A69' : darkMode ? '#565A69' : '#CED0D9',
     bg5: classicMode ? '#6C7284' : darkMode ? '#6C7284' : '#888D9B',
@@ -382,16 +382,16 @@ const TextWrapper = styled(Text) <{ color: keyof Colors }>`
 `
 export const TYPE = {
   main(props: TextProps) {
-    return <TextWrapper fontWeight={500} color={'text2'} {...props} />
+    return <TextWrapper fontWeight={900} color={'text2'} {...props} />
   },
   link(props: TextProps) {
-    return <TextWrapper fontWeight={500} color={'primary1'} {...props} />
+    return <TextWrapper fontWeight={900} color={'primary1'} {...props} />
   },
   black(props: TextProps) {
-    return <TextWrapper fontWeight={500} color={'text1'} {...props} />
+    return <TextWrapper fontWeight={900} color={'text1'} {...props} />
   },
   white(props: TextProps) {
-    return <TextWrapper fontWeight={500} color={'text1'} {...props} />
+    return <TextWrapper fontWeight={900} color={'text1'} {...props} />
   },
   body(props: TextProps) {
     return <TextWrapper fontWeight={400} fontSize={16} color={'text1'} {...props} />
@@ -400,31 +400,31 @@ export const TYPE = {
     return <TextWrapper fontWeight={600} fontSize={24} {...props} />
   },
   mediumHeader(props: TextProps) {
-    return <TextWrapper fontWeight={500} fontSize={20} {...props} />
+    return <TextWrapper fontWeight={900} fontSize={20} {...props} />
   },
   subHeader(props: TextProps) {
     return <TextWrapper fontWeight={400} fontSize={14} {...props} />
   },
   small(props: TextProps) {
-    return <TextWrapper fontWeight={500} fontSize={11} {...props} />
+    return <TextWrapper fontWeight={900} fontSize={11} {...props} />
   },
   blue(props: TextProps) {
-    return <TextWrapper fontWeight={500} color={'primary1'} {...props} />
+    return <TextWrapper fontWeight={900} color={'primary1'} {...props} />
   },
   yellow(props: TextProps) {
-    return <TextWrapper fontWeight={500} color={'yellow1'} {...props} />
+    return <TextWrapper fontWeight={900} color={'yellow1'} {...props} />
   },
   darkGray(props: TextProps) {
-    return <TextWrapper fontWeight={500} color={'text3'} {...props} />
+    return <TextWrapper fontWeight={900} color={'text3'} {...props} />
   },
   gray(props: TextProps) {
-    return <TextWrapper fontWeight={500} color={'bg3'} {...props} />
+    return <TextWrapper fontWeight={900} color={'bg3'} {...props} />
   },
   italic(props: TextProps) {
-    return <TextWrapper fontWeight={500} fontSize={12} fontStyle={'italic'} color={'text2'} {...props} />
+    return <TextWrapper fontWeight={900} fontSize={12} fontStyle={'italic'} color={'text2'} {...props} />
   },
   error({ error, ...props }: { error: boolean } & TextProps) {
-    return <TextWrapper fontWeight={500} color={error ? 'red1' : 'text2'} {...props} />
+    return <TextWrapper fontWeight={900} color={error ? 'red1' : 'text2'} {...props} />
   }
 }
 
@@ -434,7 +434,7 @@ export const FixedGlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 html, body { margin: 0; padding: 0; }
-a { color: ${colors(false, false).blue1}; }
+a { color: ${colors(false, false).text2}; }
 * { box-sizing: border-box; } 
 button { user-select: none; }
 
@@ -466,18 +466,18 @@ html {
 }
 
 html, input, textarea, button { 
-  font-family: "DM Sans",-apple-system,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif,BlinkMacSystemFont,"Helvetica Neue","Helvetica",sans-serif;
+  font-family: "Circular Std", Helvetica, Arial, sans-serif, "DM Sans",-apple-system,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif,BlinkMacSystemFont,"Helvetica Neue","Helvetica",sans-serif;
   --primary: #0d0415;
   --text-primary: #bfbfbf;
-  --font-sans: "DM Sans",-apple-system,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif,BlinkMacSystemFont,"Helvetica Neue","Helvetica",sans-serif;
+  --font-sans: "Circular Std", Helvetica, Arial, sans-serif, "DM Sans",-apple-system,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif,BlinkMacSystemFont,"Helvetica Neue","Helvetica",sans-serif;
   --scrollbar-width: 14px; 
 };
 @supports (font-variation-settings: normal) { 
   html, input, textarea, button { 
-    font-family: "DM Sans",-apple-system,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif,BlinkMacSystemFont,"Helvetica Neue","Helvetica",sans-serif; 
+    font-family: "Circular Std", Helvetica, Arial, sans-serif, "DM Sans",-apple-system,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif,BlinkMacSystemFont,"Helvetica Neue","Helvetica",sans-serif; 
     --primary: #0d0415;
     --text-primary: #bfbfbf;
-    --font-sans: "DM Sans",-apple-system,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif,BlinkMacSystemFont,"Helvetica Neue","Helvetica",sans-serif;
+    --font-sans: "Circular Std", Helvetica, Arial, sans-serif, "DM Sans",-apple-system,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif,BlinkMacSystemFont,"Helvetica Neue","Helvetica",sans-serif;
     --scrollbar-width: 14px;
   } 
 };
@@ -627,12 +627,6 @@ body {
       : theme.name == 'dark'
         ? 'url(' + images.backgrounds.dark + ')'
         : 'url(' + images.backgrounds.light + ')'};*/
-  background-color: ${({ theme }) =>
-    theme.name == 'classic'
-      ? theme.black
-      : theme.name == 'dark'
-        ? 'transparent'
-        : 'linear-gradient(rgba(255,255,255,.1), rgba(255,255,255,.1))'};
 }
 
 ::placeholder { color: ${({ theme }) => theme.placeholderColor}; }
@@ -1073,8 +1067,8 @@ MARGIN STYLE MINUS
     min-height: 100%;
   }
 
-  .appBackground .videoOverlay.dark { background-color: rgb(3 26 56 / 77%); }
-  .appBackground .videoOverlay.light { background-color: ${({ theme }) => theme.utils.hexToRGB(theme.white, 0.9)} }
+  .appBackground .videoOverlay.dark { background-color: black; }
+  .appBackground .videoOverlay.light { background-color: white }
   .appBackground.classic { display: none; }
   
   .advaced-swap-details.value, .advaced-swap-details.label { font-size: 14px; }
@@ -1094,7 +1088,6 @@ export const BodyWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding-top: 25px;
   align-items: center;
   flex: 1;
   overflow-y: auto;
@@ -1115,77 +1108,18 @@ export const Marginer = styled.div`
 export const MainContainer = styled.div`
   margin: 0 auto;
   position: relative;
-  max-width: 1200px;
-  min-height: 620px;
   width: 100%;
   display: inline-block;
   z-index: 2;
-  &.classic {
-    padding: 0px;
-    border-radius: 0.65rem;
-    border: solid 2px #424542;
-    box-shadow: 1px 1px #e7dfe7, -1px -1px #e7dfe7, 1px -1px #e7dfe7, -1px 1px #e7dfe7, 0 -2px #9c9a9c, -2px 0 #7b757b,
-      0 2px #424542;
-  }
+
 
   @media (max-width: 1050px) {
-    width: 375px;
-    margin: 0px auto 10px auto;
-    max-width: 100% !important;
-    min-height: auto !important;
-    border: none !important;
-    padding: 10px 0px 0px 0px;
-    &:before,
-    &:after {
-      display: none;
-    }
-    &.classic {
-      margin-top: 30px;
-    }
+
   }
 
   &:before,
   &:after {
-    content: '';
-    position: absolute;
-    width: 305px;
-    height: 265px;
-    background-position: center center;
-    background-repeat: no-repeat;
-    z-index: -41;
-    opacity: 0.6;
-    background-size: 100% 100%;
-  }
 
-  &:before {
-    bottom: -100px;
-    left: -112px;
-  }
-  &:after {
-    bottom: -100px;
-    right: -112px;
-  }
-
-  &.dark:before {
-    background-image: url(${images.decorators.grid.dark});
-  }
-  &.dark:after {
-    background-image: url(${images.decorators.grid.dark});
-  }
-
-  &.light:before {
-    background-image: url(${images.decorators.grid.light});
-  }
-  &.light:after {
-    background-image: url(${images.decorators.grid.light});
-  }
-  &.classic:after,
-  &.classic:before,
-  &.dark:after,
-  &.dark:before,
-  &.light:after,
-  &.light:before {
-    display: none;
   }
 `
 export const MainContainerExtraDecorator = styled.div`
@@ -1255,91 +1189,21 @@ export const MainContainerExtraDecorator = styled.div`
   }
 `
 export const MainContainerContentWrapper = styled.div`
-  position: relative;
-  max-width: 1200px;
-  box-shadow: 0px 10px 20px 10px #00000012;
-
-  min-height: 620px;
-  width: 100%;
-  border-radius: .65rem;
-  padding: 15px 15px 5px 40px;
-  background-size: cover;
-  --tw-shadow: 0px 50px 250px -47px rgba(39,176,230,0.29)!important;
-
-  &.dark {
-    background-color: rgb(14 32 60)!important
-  }
-  //&.dark { background: linear-gradient(133deg, ${({ theme }) => theme.utils.hexToRGB(theme.blue2, 0.8)} 60%, ${({
-  theme
-}) => theme.utils.hexToRGB(theme.azure3, 0.3)} 100%); }
-  &.light { background: linear-gradient(133deg, ${({ theme }) => theme.utils.hexToRGB(theme.violet2, 0.3)} 60%, ${({
-  theme
-}) => theme.utils.hexToRGB(theme.violet3, 0.3)} 100%); }
-  &.classic { 
-    padding: 5px 5px 5px 35px;
-    background: linear-gradient(0deg, ${({ theme }) => theme.utils.hexToRGB(theme.blue6, 1)} 0%, ${({ theme }) =>
-    theme.utils.hexToRGB(theme.blue5, 1)} 100%); 
-  }
-
-  @media (max-width: 1050px) { padding: 5px 5px 5px 5px !important; min-height: auto; }
+  
 `
 export const FeatureTitle = styled.h2`
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  padding: 0px;
-  margin: 0px;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  text-transform: capitalize;
-  display: inline-block;
-  z-index: 10;
-  font-weight: 400;
-  font-size: 33px;
-  padding-top: 15px;
-  padding-bottom: 170px;
-  overflow: hidden;
-  text-shadow: 3px 3px 3px 0px rgba(40, 39, 40, 1);
-
-  &.dark {
-    color: ${({ theme }) => theme.azure5};
-  }
-  &.light {
-    color: ${({ theme }) => theme.violet1};
-  }
-  &.classic {
-    color: #ffffff;
-    left: 0px;
-    text-shadow: 1px 1px 1px ${({ theme }) => theme.black};
-  }
-
-  @media (max-width: 1050px) {
-    display: none;
-  }
+  
 `
 export const FeatureChildrenContainer = styled.div`
-  border-radius:.65rem;
   max-width: 1200px;
-  min-height: 580px;
   padding: 20px 7px;
-
-  &.dark { 
-    background: rgb(31,121,228);
-    background-color: rgb(8 44 88)!important
-    //background: linear-gradient(-60deg, ${({ theme }) => theme.utils.hexToRGB(theme.blue2, 0.24)} 60%, ${({
-  theme
-}) => theme.utils.hexToRGB(theme.azure3, 0.59)} 100%); 
-  }
-  &.light { background: linear-gradient(-60deg, ${({ theme }) => theme.utils.hexToRGB(theme.white, 0.8)} 60%, ${({
-  theme
-}) => theme.utils.hexToRGB(theme.white, 0.8)} 100%); }
-  &.classic {}
+  margin: 0px auto;
 
   @media (max-width: 1050px) { min-height: auto; }
 `
 export const SectionTitle = styled.h6`
-  font-weight: 500;
-  font-size: 18px;
+  font-weight: 900;
+  font-size: 36px;
   position: relative;
   display: inline-block;
   margin: 7px;
@@ -1348,36 +1212,14 @@ export const SectionTitle = styled.h6`
   width: 80%;
 
   &.dark {
-    color: ${({ theme }) => theme.azure9};
+    color: ${({ theme }) => theme.white};
   }
   &.light {
-    color: ${({ theme }) => theme.grey3};
+    color: ${({ theme }) => theme.black};
   }
   &.classic {
     color: ${({ theme }) => theme.azure1};
     text-shadow: 1px 1px 1px ${({ theme }) => theme.black};
-  }
-
-  &.dark:before,
-  &.light:before {
-  }
-
-  &.dark:after,
-  &.light:after {
-    content: ' ';
-    display: block;
-    width: 100%;
-    height: 1px;
-    position: absolute;
-    bottom: -1px;
-    left: 0px;
-  }
-
-  &.dark:after {
-    background: linear-gradient(to right, ${({ theme }) => theme.azure1} 0%, rgba(15, 63, 115, 0) 100%);
-  }
-  &.light:after {
-    background: linear-gradient(to right, ${({ theme }) => theme.violet1} 0%, rgba(15, 63, 115, 0) 100%);
   }
 
   &.classic.add-liquidity-section-title {
@@ -1412,51 +1254,28 @@ export const InventoryContainer = styled.div`
   }
 `
 export const InventoryItemContainer = styled.div`
+  border-radius: 16px;
   padding: 1rem;  
-  margin-bottom: 5px;
-  height: auto;
-  background-size: cover;
-  position: relative;
-  font-size: 15px;
-  border-radius: .65rem;
-  color: ${({ theme }) => theme.text6};
+  height: 100px;
+  margin-bottom: 8px;
+  background: transparent;
+  font-size: 14px;
+  font-weight: 900;
+
+  color: ${({ theme }) => theme.text1};
 
   &.dark {
-    background: linear-gradient(
-      90deg,
-      rgba(15, 24, 42, .6) 0%, 
-      rgba(15, 24, 42, .6) 100%
-    );
+    border: 2px solid rgba(255, 255, 255, 0.1);
   }
   &.dark:hover {
-    background: linear-gradient(
-      90deg,
-      ${({ theme }) => theme.utils.hexToRGB(theme.azure8, 0.6)} 0%,
-      ${({ theme }) => theme.utils.hexToRGB(theme.azure8, 0.6)} 100%
-    );
-    color: ${({ theme }) => theme.text1};
-    &.dark:after {
-      background-color: ${({ theme }) => theme.azure7};
-    }
+    border: 2px solid rgba(255, 255, 255, 0.2);
   }
 
   &.light {
-    background: linear-gradient(
-      90deg, 
-      rgba(211, 221, 250, 0.6) 0%, 
-      rgba(211, 221, 250, 0.6) 100%);
-    color: ${({ theme }) => theme.text2};
+    border: 2px solid rgba(4, 4, 5, 0.1);
   }
   &.light:hover {
-    background: linear-gradient(
-      90deg,
-      ${({ theme }) => theme.utils.hexToRGB(theme.violet3, 0.6)} 0%,
-      ${({ theme }) => theme.utils.hexToRGB(theme.violet3, 0.6)} 100%
-    );
-    color: ${({ theme }) => theme.text1};
-    &.light:after {
-      background-color: ${({ theme }) => theme.violet1};
-    }
+    border: 2px solid rgba(4, 4, 5, 0.2);
   }
 
   &.classic {
@@ -1596,7 +1415,9 @@ export const SimpleTextParagraph = styled.p`
 `
 export const SimpleInformationsTextParagraph = styled(SimpleTextParagraph)`
   &.dark {
-    color: ${({ theme }) => theme.azure1};
+    color: ${({ theme }) => theme.text2};
+    font-size: 14px;
+    font-weight: 900;
   }
   &.light {
   }
@@ -1661,11 +1482,14 @@ export const IconButton = styled(BaseButton) <{ width?: string; borderRadius?: s
   cursor: pointer;
   width: fit-content;
   margin-left: 10px !important;
+  border-color: rgba(4, 4, 5, 0.1);
+    color: rgba(4, 4, 5, 0.8);
+    background: transparent;
 
   & > svg,
   & > span.icon-symbol {
-    width: 14px;
-    height: 14px;
+    width: 20px;
+    height: 20px;
   }
   & > span.icon-symbol {
     display: inline-block;
@@ -1692,23 +1516,22 @@ export const IconButton = styled(BaseButton) <{ width?: string; borderRadius?: s
 
   &.dark:hover > svg,
   &.dark:focus > svg {
-    filter: drop-shadow(0px 0px 3px ${({ theme }) => theme.yellowLight});
+    stroke: ${({ theme }) => theme.text1};
+    color: ${({ theme }) => theme.text1};
   }
   &.dark:hover > span.icon-symbol,
   &.dark:focus > span.icon-symbol {
-    text-shadow: 0px 0px 3px ${({ theme }) => theme.yellowLight};
+
   }
 
   &.light:hover > svg,
   &.light:focus > svg {
-    stroke: ${({ theme }) => theme.azure6};
-    color: ${({ theme }) => theme.azure6};
-    filter: drop-shadow(0px 0px 3px ${({ theme }) => theme.utils.hexToRGB(theme.violet1, 0.9)});
+    stroke: ${({ theme }) => theme.text1};
+    color: ${({ theme }) => theme.text1};
   }
   &.light:hover > span.icon-symbol,
   &.light:focus > span.icon-symbol {
-    color: ${({ theme }) => theme.azure6};
-    text-shadow: 0px 0px 3px ${({ theme }) => theme.utils.hexToRGB(theme.violet1, 0.9)};
+
   }
 
   &.light:classic > svg,
@@ -1751,11 +1574,11 @@ export const IconButton = styled(BaseButton) <{ width?: string; borderRadius?: s
 `
 export const InventoryGridContainer = styled.div`
   display: grid;
-  grid-template-columns: 70% auto;
+  grid-template-columns: 20% 50% auto;
 `
 export const GridContainer = styled.div`
   display: grid;
-  grid-template-columns: 80% auto;
+  grid-template-columns: 20% 50% auto;
 `
 export const PageGridContainer = styled.div`
   display: grid;
@@ -1939,16 +1762,8 @@ export const TabsBar = styled.div`
   }
 
   &.dark:before {
-    background: linear-gradient(90deg, rgba(129, 205, 243, 0) 0, #81cdf3 5%, #81cdf3 95%, rgba(129, 205, 243, 0));
   }
   &.light:before {
-    background: linear-gradient(
-      90deg,
-      rgba(129, 205, 243, 0) 0,
-      ${({ theme }) => theme.utils.hexToRGB(theme.violet1, 1)} 5%,
-      ${({ theme }) => theme.utils.hexToRGB(theme.violet1, 1)} 95%,
-      rgba(129, 205, 243, 0)
-    );
   }
 
   &.dark:after,
@@ -2043,17 +1858,16 @@ export const TabLinkItem = styled(NavLink).attrs({ tablinkitemactiveclassname })
   outline: none;
   cursor: pointer;
   text-decoration: none;
-  font-size: 18px;
-  width: fit-content;
-  margin: 0 12px;
-  font-weight: 500;
+  font-size: 36px;
+  margin-right: 10px
+  font-weight: 900;
   float: right;
 
   &.dark {
-    color: ${({ theme }) => theme.white};
+    color: ${({ theme }) => theme.grey};
   }
   &.light {
-    color: ${({ theme }) => theme.grey1};
+    color: ${({ theme }) => theme.grey};
   }
   &.classic {
     color: ${({ theme }) => theme.white};
@@ -2064,10 +1878,10 @@ export const TabLinkItem = styled(NavLink).attrs({ tablinkitemactiveclassname })
   }
 
   &.dark.${tablinkitemactiveclassname} {
-    color: ${({ theme }) => theme.azure1};
+    color: ${({ theme }) => theme.white};
   }
   &.light.${tablinkitemactiveclassname} {
-    color: ${({ theme }) => theme.violet1};
+    color: ${({ theme }) => theme.black};
   }
   &.classic.${tablinkitemactiveclassname} {
     color: ${({ theme }) => theme.azure1};
@@ -2343,13 +2157,35 @@ export const CurrencyFormPanel = styled.div<{ hideInput?: boolean }>`
   flex-flow: column nowrap;
   position: relative;
   z-index: 1;
+  background: transparent;
+  font-size: 14px;
+  font-weight: 900;
+  border-radius: 16px;
+  padding: 1rem;
+  margin: 0 5px;
+
+  color: ${({ theme }) => theme.text1};
+
+  &.dark {
+    border: 2px dashed rgba(255, 255, 255, 0.1);
+  }
+  &.dark:hover {
+    border: 2px dashed rgba(255, 255, 255, 0.2);
+  }
+
+  &.light {
+    border: 2px dashed rgba(4, 4, 5, 0.1);
+  }
+  &.light:hover {
+    border: 2px dashed rgba(4, 4, 5, 0.2);
+  }
 
   &.remove-liquidity {
     margin: 0 auto -7% auto;
   }
 
   & > .itemsContainer {
-    border-radius: ${({ hideInput }) => (hideInput ? '8px' : '20px')};
+
   }
 
   & > .itemsContainer .labelRow {
@@ -2357,7 +2193,8 @@ export const CurrencyFormPanel = styled.div<{ hideInput?: boolean }>`
     flex-flow: column nowrap;
     align-items: center;
     color: ${({ theme }) => theme.text1};
-    font-size: 0.75rem;
+    font-size: 14px;
+    font-weight: 900;
     line-height: 1rem;
     padding: 0rem 1rem 0 1rem;
   }
@@ -2378,8 +2215,6 @@ export const CurrencyFormPanel = styled.div<{ hideInput?: boolean }>`
   }
 
   & > .itemsContainer .label {
-    font-weight: 500;
-    font-size: 14px;
     display: inline;
   }
   & > .itemsContainer .label.link {
@@ -2403,18 +2238,19 @@ export const CurrencyFormPanel = styled.div<{ hideInput?: boolean }>`
     color: ${({ theme }) => theme.azure1};
   }
 `
-export const ActionButton = styled(BaseButton) <{
+export const CustomActionButton = styled(BaseButton) <{
   disabled?: boolean
   selected?: boolean
   useCustomProperties?: boolean
 }>`
-  border-radius: 0.65rem !important;
-  font-size: 12px !important;
-  font-weight: 500;
+border-radius: 40px !important;
+font-size: 14px;
+font-weight: 900;
   text-transform: capitalize;
   text-align: center;
-  letter-spacing: 0.1em;
-  padding: 3px 7px !important;
+  height: 40px;
+  padding-left: 22px;
+  padding-right: 22px;
 
   & > label,
   & > label + svg {
@@ -2433,15 +2269,13 @@ export const ActionButton = styled(BaseButton) <{
   }
 
   &.dark {
-    color: ${({ theme }) => theme.yellowGreen} !important;
-    border: 1px solid ${({ theme }) => theme.yellowGreen} !important;
-    background-color: ${({ theme }) => theme.blue3};
+    color: #ffffff !important;
+    background-color: #0066ff !important;
   }
 
   &.light {
-    color: ${({ theme }) => theme.violet1} !important;
-    border: 1px solid ${({ theme }) => theme.violet1} !important;
-    background-color: ${({ theme }) => theme.violet3};
+    color: #ffffff !important;
+    background-color: #0066ff !important;
   }
 
   &.classic {
@@ -2481,6 +2315,51 @@ export const ActionButton = styled(BaseButton) <{
     display: block;
   }
 `
+
+export const ActionButton = styled(BaseButton) <{ disabled?: boolean, selected?: boolean, useCustomProperties?: boolean }>`
+  border-radius: 16px !important;
+  font-size: 12px !important;
+  font-weight: 900;
+  text-transform: capitalize;
+  text-align: center;
+  padding: 3px 7px !important;
+  & > label, & > label + svg { display: block; float: left; }
+  & > label + svg { width: 15px; }
+  & > label { margin-top: 3px; margin-right: 5px; }
+  & > label.classic { margin-top: 7px; }
+  &.dark {
+    color: ${({ theme }) => theme.yellowGreen} !important;
+    background-color: ${({ theme }) => theme.transparent};
+  }
+  &.light {
+    color: ${({ theme }) => theme.violet1} !important;
+    background-color: ${({ theme }) => theme.transparent};
+  }
+  &.classic {
+    text-shadow: 1px 1px 1px ${({ theme }) => theme.black};
+    padding: 0px 10px 0px 10px !important;
+    color: ${({ theme }) => theme.yellowGreen};
+    position: relative;
+  }
+  &.classic:before { 
+    position: absolute;
+    content: " ";
+    display: none; 
+    width: 57px;
+    height: 35px;
+    background-image: url(${images.icons.FF7Cursor});
+    background-repeat: no-repeat;
+    background-position: center center;
+    left: -57px;
+    top: -4px;
+    z-index: 1;
+  }
+  &.dark:hover, &.dark:focus { box-shadow: 0px 0px 4px ${({ theme }) => theme.yellowGreen}; }
+  &.light:hover, &.light:focus { box-shadow: 0px 0px 4px ${({ theme }) => theme.utils.hexToRGB(theme.black, 0.4)}; }
+  &.classic:hover, &.classic:focus { color: ${({ theme }) => theme.azure2}; }
+  &.classic:hover:before, &.classic:focus:before { display: block; }
+`
+
 export const Erc20Badge = styled(ActionButton) <{
   disabled?: boolean
   selected?: boolean
@@ -2716,8 +2595,8 @@ export const SwitchButton = styled(Button) <{ disabled?: boolean }>`
   position: relative;
   background: none;
   transform: rotate(45deg);
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   cursor: pointer;
 
   &:disabled,
@@ -2815,11 +2694,9 @@ export const SwitchButton = styled(Button) <{ disabled?: boolean }>`
 
   &.dark:hover,
   &.dark:focus {
-    box-shadow: 0px 0px 12px ${({ theme }) => theme.azure1};
   }
   &.light:hover,
   &.light:focus {
-    box-shadow: 0px 0px 12px ${({ theme }) => theme.violet1};
   }
   &.classic:hover,
   &.classic:focus {
@@ -2831,17 +2708,13 @@ export const SwitchButton = styled(Button) <{ disabled?: boolean }>`
   }
 
   &.dark:after {
-    background: linear-gradient(to right, ${({ theme }) => theme.azure1} 0%, rgba(15, 63, 115, 0));
   }
   &.dark:before {
-    background: linear-gradient(to right, rgba(15, 63, 115, 0) 0%, ${({ theme }) => theme.azure1} 100%);
   }
 
   &.light:after {
-    background: linear-gradient(to right, ${({ theme }) => theme.violet1} 0%, rgba(15, 63, 115, 0));
   }
   &.light:before {
-    background: linear-gradient(to right, rgba(15, 63, 115, 0) 0%, ${({ theme }) => theme.violet1} 100%);
   }
 
   &.classic:after {
@@ -3094,7 +2967,7 @@ export const MainOperationButton = styled(ActionButton) <{
 }>`
   font-size: 1rem !important;
   padding: .7rem !important;
-  border-radius: 0.625rem;
+  border-radius: 16px;
 
   &:disabled {
     opacity: 0.5;
@@ -3110,21 +2983,14 @@ export const MainOperationButton = styled(ActionButton) <{
 
   &.dark,
   &.dark:disabled {
-    color: ${({ theme }) => theme.azure2} !important;
-    border: 1px solid ${({ theme }) => theme.azure2} !important;
-    background-color: ${({ theme }) => theme.blue3};
+    color: #ffffff !important;
+    background-color: #0066ff;
   }
 
   &.light,
   &.light:disabled {
-    color: ${({ theme }) => theme.violet1} !important;
-    border: 1px solid ${({ theme }) => theme.violet1} !important;
-    background-color: ${({ theme }) => theme.violet3};
-  }
-
-  &.light:disabled,
-  &.light.popup-button.dismiss {
-    background-color: ${({ theme }) => theme.red3};
+    color: #ffffff !important;
+    background-color: #0066ff;
   }
 
   &.dark:hover,
@@ -3401,14 +3267,14 @@ export const SecondaryPanelBoxContainer = styled.div`
   &.dark > .inner-content {
     background: linear-gradient(
       90deg,
-      ${({ theme }) => theme.utils.hexToRGB(theme.blue4, 0.8)} 60%,
-      ${({ theme }) => theme.utils.hexToRGB(theme.blue3, 0.8)} 100%
+      ${({ theme }) => theme.utils.hexToRGB(theme.blue4, 1)} 100%,
+      ${({ theme }) => theme.utils.hexToRGB(theme.blue3, 1)} 100%
     );
   }
   &.light > .inner-content {
     background: linear-gradient(
       90deg,
-      ${({ theme }) => theme.utils.hexToRGB(theme.violet5, 1)} 60%,
+      ${({ theme }) => theme.utils.hexToRGB(theme.violet5, 1)} 100%,
       ${({ theme }) => theme.utils.hexToRGB(theme.violet5, 1)} 100%
     );
     border: solid 1px ${({ theme }) => theme.utils.hexToRGB(theme.violet3, 1)};
@@ -3416,7 +3282,7 @@ export const SecondaryPanelBoxContainer = styled.div`
   &.classic > .inner-content {
     background: linear-gradient(
       0deg,
-      ${({ theme }) => theme.utils.hexToRGB(theme.violet6, 1)} 60%,
+      ${({ theme }) => theme.utils.hexToRGB(theme.violet6, 1)} 100%,
       ${({ theme }) => theme.utils.hexToRGB(theme.violet7, 1)} 100%
     );
     border-radius: 1rem;
@@ -3725,12 +3591,12 @@ export const ThemedDialogOverlay = styled(AnimatedDialogOverlay)`
   }
 
   &.dark[data-reach-dialog-overlay] {
-    background-color: ${({ theme }) => theme.utils.hexToRGB(theme.black, 0.8)};
+    background-color: ${({ theme }) => theme.utils.hexToRGB(theme.black, 1)};
   }
   &.light[data-reach-dialog-overlay] {
   }
   &.classic[data-reach-dialog-overlay] {
-    background-color: ${({ theme }) => theme.utils.hexToRGB(theme.black, 0.8)};
+    background-color: ${({ theme }) => theme.utils.hexToRGB(theme.black, 1)};
   }
 `
 const AnimatedDialogContent = animated(DialogContent)
@@ -4354,7 +4220,7 @@ export const StyledRangeInput = styled.input`
     background: linear-gradient(
       90deg,
       ${({ theme }) => theme.utils.hexToRGB(theme.azure1, 1)},
-      ${({ theme }) => theme.utils.hexToRGB(theme.azure1, 0.7)}
+      ${({ theme }) => theme.utils.hexToRGB(theme.azure1, 1)}
     );
     height: 2px;
   }
@@ -4363,7 +4229,7 @@ export const StyledRangeInput = styled.input`
     background: linear-gradient(
       90deg,
       ${({ theme }) => theme.utils.hexToRGB(theme.azure1, 1)},
-      ${({ theme }) => theme.utils.hexToRGB(theme.azure1, 0.7)}
+      ${({ theme }) => theme.utils.hexToRGB(theme.azure1, 1)}
     );
     height: 2px;
   }
@@ -4372,7 +4238,7 @@ export const StyledRangeInput = styled.input`
     background: linear-gradient(
       90deg,
       ${({ theme }) => theme.utils.hexToRGB(theme.azure1, 1)},
-      ${({ theme }) => theme.utils.hexToRGB(theme.azure1, 0.7)}
+      ${({ theme }) => theme.utils.hexToRGB(theme.azure1, 1)}
     );
     height: 2px;
   }
@@ -4381,7 +4247,7 @@ export const StyledRangeInput = styled.input`
     background: linear-gradient(
       90deg,
       ${({ theme }) => theme.utils.hexToRGB(theme.azure1, 1)},
-      ${({ theme }) => theme.utils.hexToRGB(theme.azure1, 0.7)}
+      ${({ theme }) => theme.utils.hexToRGB(theme.azure1, 1)}
     );
     height: 2px;
   }
@@ -4390,7 +4256,7 @@ export const StyledRangeInput = styled.input`
     background: linear-gradient(
       90deg,
       ${({ theme }) => theme.utils.hexToRGB(theme.azure1, 1)},
-      ${({ theme }) => theme.utils.hexToRGB(theme.azure1, 0.7)}
+      ${({ theme }) => theme.utils.hexToRGB(theme.azure1, 1)}
     );
     height: 2px;
   }
@@ -4399,7 +4265,7 @@ export const StyledRangeInput = styled.input`
     background: linear-gradient(
       90deg,
       ${({ theme }) => theme.utils.hexToRGB(theme.azure1, 1)},
-      ${({ theme }) => theme.utils.hexToRGB(theme.azure1, 0.7)}
+      ${({ theme }) => theme.utils.hexToRGB(theme.azure1, 1)}
     );
     height: 2px;
   }
@@ -4601,11 +4467,15 @@ export const SettingsFlyout = styled.span`
   background-color: ${({ theme }) => theme.bg2};
   box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.01), 0px 4px 8px rgba(0, 0, 0, 0.04), 0px 16px 24px rgba(0, 0, 0, 0.04),
     0px 24px 32px rgba(0, 0, 0, 0.01);
-  border-radius: 5px;
+  border-radius: 16px;
   padding: 0.5rem;
+  font-size: 1rem;
+  position: absolute;
+  top: 2rem;
+  right: 0rem;
   z-index: 100;
 
-  ${({ theme }) => theme.mediaWidth.upToMedium` top: -17.25rem; `};
+  ${({ theme }) => theme.mediaWidth.upToMedium` top: -12rem; `};
 
   &.classic {
     box-shadow: none;
@@ -4626,7 +4496,7 @@ export const MenuFlyout = styled.span`
   background-color: ${({ theme }) => theme.bg2};
   box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.01), 0px 4px 8px rgba(0, 0, 0, 0.04), 0px 16px 24px rgba(0, 0, 0, 0.04),
     0px 24px 32px rgba(0, 0, 0, 0.01);
-  border-radius: 5px;
+  border-radius: 16px;
   padding: 0.5rem;
   display: flex;
   flex-direction: column;
@@ -4771,8 +4641,8 @@ export const BatchSwapCallbackErrorContainer = styled.div`
   }
 `
 export const CountdownContainer = styled.div`
-  font-size: 18px;
-  font-weight: 500;
+  font-size: 30px;
+  font-weight: 900;
 
   &.dark {
     color: ${({ theme }) => theme.white};

@@ -46,13 +46,10 @@ const Web3StatusGeneric = styled.div`
 const Web3StatusError = styled(Web3StatusGeneric)`
   background-color: ${({ theme }) => theme.red1};
   border: 1px solid ${({ theme }) => theme.red1};
-  color: ${({ theme }) => theme.text1};
-  
 `
 
 const Web3StatusConnect = styled(Web3StatusGeneric)<{ faded?: boolean }>`
   border: none;
-  color: ${({ theme }) => theme.text1};
   :hover {
     text-decoration: underline;
   }
@@ -61,7 +58,6 @@ const Web3StatusConnect = styled(Web3StatusGeneric)<{ faded?: boolean }>`
 const Web3StatusConnected = styled(Web3StatusGeneric)<{ pending?: boolean }>`
   
   border: none;
-  color: ${({ theme }) => theme.text1};
   :hover {
     text-decoration: underline;
   }
@@ -74,7 +70,6 @@ const Text = styled.p`
   white-space: nowrap;
   margin: 0 0.5rem 0 0.25rem;
   width: fit-content;
-  font-weight: 500;
 `
 
 const NetworkIcon = styled(Activity)`

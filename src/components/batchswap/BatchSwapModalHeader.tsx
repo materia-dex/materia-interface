@@ -24,12 +24,12 @@ export default function BatchSwapModalHeader({
       <RowBetween align="flex-end">
         <RowFixed gap={'0px'}>
           <CurrencyLogo currency={currencyInput} size={'24px'} style={{ marginRight: '12px' }} />
-          <TruncatedText fontSize={24} fontWeight={500} color={''}>
+          <TruncatedText fontSize={24} fontWeight={900} color={''}>
             {input.amount?.toSignificant(6)}
           </TruncatedText>
         </RowFixed>
         <RowFixed gap={'0px'}>
-          <Text fontSize={24} fontWeight={500} style={{ marginLeft: '10px' }}>
+          <Text fontSize={24} fontWeight={900} style={{ marginLeft: '10px' }}>
             {currencyInput?.symbol}
           </Text>
         </RowFixed>
@@ -51,12 +51,12 @@ export default function BatchSwapModalHeader({
                 size={'24px'}
                 style={{ marginRight: '12px' }}
               />
-              <TruncatedText fontSize={24} fontWeight={500} color={''}>
+              <TruncatedText fontSize={24} fontWeight={900} color={''}>
                 {`${output.percentage}%`}
               </TruncatedText>
             </RowFixed>
             <RowFixed gap={'0px'}>
-              <Text fontSize={24} fontWeight={500} style={{ marginLeft: '10px' }}>
+              <Text fontSize={24} fontWeight={900} style={{ marginLeft: '10px' }}>
                 {output.currency == ETHER ? 'ETH' : output.token?.symbol}
               </Text>
             </RowFixed>

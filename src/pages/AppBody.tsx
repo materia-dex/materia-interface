@@ -43,14 +43,10 @@ export default function AppBody({ children }: { children: React.ReactNode }) {
     <MainContainer className={theme.name}>
       <MainContainerExtraDecorator className={ `top ${theme.name}` }/>
       <MainContainerContentWrapper className={theme.name}>
-        <FeatureTitle className={theme.name}>{featureTitle}</FeatureTitle>
         <FeatureChildrenContainer className={theme.name}>
         {children}
         </FeatureChildrenContainer>
         <FooterInfo className={theme.name}>
-          <div className="boxFooterCaption">
-            Materia is an EthItem first DEX. Please note that if you use ERC20 tokens you will pay for EthItem wrap/unwrap operations.
-          </div>
         </FooterInfo>
       </MainContainerContentWrapper>      
       <MainContainerExtraDecorator className={ `bottom ${theme.name}` }/>

@@ -383,17 +383,17 @@ export function useBatchSwapDefaults(): { inputCurrencyId: string | undefined } 
   useEffect(() => {
     if (!chainId) return
 
-    const token = WUSD[chainId]
-    const currency = unwrappedToken(WUSD[chainId])
+    const token = 'ETH'
+    const currency = unwrappedToken(IETH[chainId])
 
     dispatch(
       setInitialState({
         inputCurrency: currency,
-        inputCurrencyId: token.address
+        inputCurrencyId: token,
       })
     )
 
-    setResult({ inputCurrencyId: token.address })
+    setResult({ inputCurrencyId: token })
   }, [dispatch, chainId])
 
   return result
