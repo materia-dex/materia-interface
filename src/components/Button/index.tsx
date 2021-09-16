@@ -123,10 +123,11 @@ export const ButtonMateriaLight = styled(ButtonLight)`
   }
 `
 export const ButtonMateriaPrimary = styled(ButtonPrimary)`
-  font-size: 16px !important;
-  padding: 5px 10px !important;
+  font-size: 14px !important;
+  font-weight: 900;
+  padding: 5px 12px !important;
   display: inline-block;
-  border-radius: 4px;
+  border-radius: 16px;
 
   &:disabled { opacity: 0.5; }
 

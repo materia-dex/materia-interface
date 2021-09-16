@@ -640,6 +640,11 @@ body {
 .text-right { text-align: right !important;}
 .text-center { text-align: center !important;}
 
+.text-center-title { 
+  font-weight: 900 !important;
+  color: ${({ theme }) => theme.text1} !important;
+}
+
 /*  --------------------------------------------------------
 ALPHA OPACITY
 -------------------------------------------------------- */
@@ -1822,7 +1827,7 @@ export const DynamicGrid = styled.div<{ columns: number; columnsDefinitions?: Dy
 
   & .title {
     font-size: 18px;
-    font-weight: 500;
+    font-weight: 900;
   }
 
   &.dark .title,
@@ -1994,8 +1999,8 @@ export const InternalLinkItem = styled(NavLink).attrs({ internallinkitemactivecl
 `
 export const InternalLinkBadge = styled(NavLink).attrs({ internallinkitemactiveclassname })`
   display: flex;
-  border-radius: 0.625rem;
-  padding: 0.6rem;
+  border-radius: 16px;
+  padding: 1rem;
   flex-flow: row nowrap;
   align-items: left;
   outline: none;
@@ -2003,7 +2008,7 @@ export const InternalLinkBadge = styled(NavLink).attrs({ internallinkitemactivec
   text-decoration: none;
   width: fit-content;
   margin: 0 3px;
-  font-weight: 400;
+  font-weight: 900;
   float: right;
 
   &.dark {
@@ -2011,7 +2016,7 @@ export const InternalLinkBadge = styled(NavLink).attrs({ internallinkitemactivec
     background-color: #0e203c;
   }
   &.light {
-    color: ${({ theme }) => theme.grey1};
+    color: ${({ theme }) => theme.black};
     background-color: #e1e7f9;
   }
   &.classic {
@@ -2160,9 +2165,14 @@ export const CurrencyFormPanel = styled.div<{ hideInput?: boolean }>`
   background: transparent;
   font-size: 14px;
   font-weight: 900;
+
   border-radius: 16px;
   padding: 1rem;
-  margin: 0 5px;
+  margin: 5px;
+
+  @media (min-width: 1050px) {
+    max-width: 340px;
+  }
 
   color: ${({ theme }) => theme.text1};
 
@@ -3265,19 +3275,10 @@ export const SecondaryPanelBoxContainer = styled.div`
   }
 
   &.dark > .inner-content {
-    background: linear-gradient(
-      90deg,
-      ${({ theme }) => theme.utils.hexToRGB(theme.blue4, 1)} 100%,
-      ${({ theme }) => theme.utils.hexToRGB(theme.blue3, 1)} 100%
-    );
+    background-color: #1a1a1a;
   }
   &.light > .inner-content {
-    background: linear-gradient(
-      90deg,
-      ${({ theme }) => theme.utils.hexToRGB(theme.violet5, 1)} 100%,
-      ${({ theme }) => theme.utils.hexToRGB(theme.violet5, 1)} 100%
-    );
-    border: solid 1px ${({ theme }) => theme.utils.hexToRGB(theme.violet3, 1)};
+    background-color: #f5f5fe;
   }
   &.classic > .inner-content {
     background: linear-gradient(
@@ -4085,12 +4086,12 @@ export const Dots = styled.span`
 `
 export const StyledPositionCard = styled(Box) <{ bgColor: any }>`
   border: none;
-  border-radius: .625rem;
+  border-radius: 16px;
   position: relative;
   overflow: hidden;
 
   &.dark {
-    background-color: ${({ theme }) => theme.utils.hexToRGB(theme.black, 0.2)};
+    background-color: ${({ theme }) => theme.utils.hexToRGB(theme.white, 0.1)};
   }
   &.light {
     background-color: ${({ theme }) => theme.utils.hexToRGB(theme.violet3, 0.2)};

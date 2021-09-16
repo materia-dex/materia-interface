@@ -52,7 +52,7 @@ export function AddRemoveTabs({ adding, creating }: { adding: boolean; creating:
             <StyledArrowLeft />
           </HistoryLink>
         </div>
-        <div className={ `text-center title ${theme.name}` }>{creating ? 'Create a pair' : adding ? 'Add Liquidity' : 'Remove Liquidity'}</div>
+        <div className={ `text-center title text-center-title ${theme.name}` }>{creating ? 'Create a pair' : adding ? 'Add Liquidity' : 'Remove Liquidity'}</div>
         <div className="text-right">
           <QuestionHelper
             text={

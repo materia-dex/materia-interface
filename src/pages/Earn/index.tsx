@@ -78,19 +78,6 @@ export default function Earn() {
                   )}
                 </PoolSection>
 
-                <SectionTitle className={`mt10 ${theme.name}`}>First Season</SectionTitle>
-                <PoolSection>
-                  {stakingRewardsExist && stakingInfos?.length === 0 ? (
-                    <Loader style={{ margin: 'auto' }} />
-                  ) : !stakingRewardsExist ? (
-                    'No active rewards'
-                  ) : (
-                    stakingInfos?.map(stakingInfo => {
-                      // need to sort by added liquidity here
-                      return <PoolCard key={stakingInfo.stakingRewardAddress} stakingInfo={stakingInfo} stakingSeason={StakingSeason.SEASON_ONE}/>
-                    })
-                  )}
-                </PoolSection>
               </PageContentContainer>
             </div>
           </PageItemsContainer>

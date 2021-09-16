@@ -359,7 +359,7 @@ export function useStakingInfoSecondSeason(pairToFilterBy?: Pair | null): Stakin
         const periodFinishMs = periodFinishState.result?.[0]?.mul(1000)?.toNumber()
 
         memo.push({
-          isEnabled: true,
+          isEnabled: false,
           stakingRewardAddress: rewardsAddress,
           tokens: info[index].tokens,
           periodFinish: periodFinishMs > 0 ? new Date(periodFinishMs) : undefined,

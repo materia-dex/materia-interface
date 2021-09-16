@@ -260,28 +260,6 @@ export default function WalletModal({
           ) : ( <span>Connect to a wallet</span> )}
         </h6> 
         <div className="modal-content-wrapper connecting-wallet-modal">
-        {/* <div className={ `connect-wallet-terms-and-conditions ${theme.name}` }>
-          <label>
-            <input name="isGoing" type="checkbox" checked={termAndConditionsAccepted}
-              onChange={(event) => {
-                if (event.target.checked) {
-                  setWarning(false)
-                }
-                setTermAndConditionsAccepted(event.target.checked)
-              }} />
-            I accept {'  '}
-            <DocLink 
-                title="ToS" 
-                href={process.env.PUBLIC_URL + '/docs/terms_of_service.pdf'} 
-                className={ `connect-wallet-modal ${theme.name}` } />
-            {'  '} and {'  '} 
-            <DocLink 
-              title="Privacy Policy" 
-              href={process.env.PUBLIC_URL + '/docs/privacy_policy.pdf'} 
-              className={ `connect-wallet-modal ${theme.name}` } />
-          </label>
-        </div> */}
-          {/* {warning ? <InfoBox className={ `error ${theme.name}` }>Please accept terms and conditions first</InfoBox> : ''} */}
           {walletView === WALLET_VIEWS.PENDING ? (
             <PendingView connector={pendingWallet} error={pendingError} setPendingError={setPendingError} tryActivation={tryActivation} />
             ) : (

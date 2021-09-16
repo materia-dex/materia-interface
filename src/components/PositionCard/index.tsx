@@ -170,7 +170,7 @@ export default function FullPositionCard({ pair, border }: PositionCardProps) {
   const theme = useContext(ThemeContext)
 
   return (
-    <StyledPositionCard bgColor={backgroundColor} className={ `pl5 pr5 pt15 pb15 mb5 ${theme.name}` }>
+    <StyledPositionCard bgColor={backgroundColor} className={ `p15 mb5 ${theme.name}` }>
       <CardNoise />
       <AutoColumn gap="12px">
         <FixedHeightRow>
