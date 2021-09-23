@@ -146,7 +146,7 @@ export function colors(darkMode: boolean, classicMode: boolean): Colors {
 
     // backgrounds / greys
     bg1: classicMode ? '#212429' : darkMode ? '#212429' : '#FFFFFF',
-    bg2: classicMode ? '#001835' : darkMode ? '#000000' : '#FFFFFF',
+    bg2: classicMode ? '#001835' : darkMode ? 'rgb(18, 18, 18)' : '#FFFFFF',
     bg3: classicMode ? '#40444F' : darkMode ? '#40444F' : '#EDEEF2',
     bg4: classicMode ? '#565A69' : darkMode ? '#565A69' : '#CED0D9',
     bg5: classicMode ? '#6C7284' : darkMode ? '#6C7284' : '#888D9B',
@@ -2198,7 +2198,7 @@ export const CurrencyFormPanel = styled.div<{ hideInput?: boolean }>`
 
   border-radius: 16px;
   padding: 1rem;
-  margin: 5px;
+  margin: 2px;
 
   @media (min-width: 1050px) {
     max-width: 340px;
